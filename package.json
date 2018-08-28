@@ -1,0 +1,40 @@
+{
+  "name": "select2",
+  "version": "5.0.0-alpha.0",
+  "description": "Select2 5.x",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.dev.js --mode development --hot",
+    "dist": "webpack --config webpack.config.dist.js --display-modules --mode production"
+  },
+  "keywords": [],
+  "author": "Igor Vaynberg",
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.0.0-rc.13",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.21.0",
+    "typescript": "^3.0.1",
+    "typings-for-css-modules-loader": "^1.7.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.6",
+    "@types/react": "^16.4.9",
+    "@types/react-dom": "^16.0.7",
+    "classnames": "^2.2.6",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
