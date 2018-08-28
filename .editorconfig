@@ -2,5 +2,5 @@
 indent_style = space
 end_of_line = lf
 
-[*.js]
+[*.js,*.jsx,*.ts,*.tsx]
 indent_size = 2
