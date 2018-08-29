@@ -13,8 +13,8 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, "dist"),
-        filename: "select2.js",
-        library: "select2",
+        filename: "select25.js",
+        library: "select25",
         libraryTarget: "umd"
     },
     devtool: 'source-map',
@@ -65,13 +65,19 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist'], {exclude:".gitkeep"}),
         new MiniCssExtractPlugin({
-            filename: "select2.css"
+            filename: "select25.css"
         }),
         new CopyWebpackPlugin([
-            {from: path.join(__dirname, "src", "select2-jquery-bridge.js")}
+            {from: path.join(__dirname, "src", "select2-jquery-bridge.js"), to: "select25-jquery-bridge.js"}
         ]),
         new webpack.BannerPlugin({
-            banner: fs.readFileSync(path.join(__dirname, "LICENSE.md"), "utf8"),
+            banner: function() {
+                var header="";
+                header+=fs.readFileSync(path.join(__dirname, "LICENSE.md"), "utf8");
+                header+="\r\n";
+                header+="\r\nBuild Timestamp: "+(new Date().toISOString());
+                return header;
+                },
             raw: false,
             entryOnly: true,
         })

@@ -13,76 +13,78 @@
  * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ * Build Timestamp: 2018-08-29T23:04:17.714Z
  */
 @charset "UTF-8";
 /*
  content: "✓";
 content: "×";
 */
-.s2-control {
+.s25-control {
   position: relative;
   box-sizing: border-box;
   min-height: 38px;
   width: 100%; }
 
-.s2-multi {
+.s25-multi {
   display: flex;
   flex-wrap: nowrap; }
 
-.s2-multi .s2-body {
+.s25-multi .s25-body {
   flex-grow: 1;
   display: flex;
   flex-wrap: wrap; }
 
-.s2-multi .s2-toggle {
+.s25-multi .s25-toggle {
   flex-grow: 0;
   flex-shrink: 0;
   display: flex;
   box-sizing: border-box; }
 
-.s2-multi .s2-multi-values {
+.s25-multi .s25-multi-values {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap; }
 
-.s2-multi .s2-multi-values .s2-remove {
+.s25-multi .s25-multi-values .s25-remove {
   flex-shrink: 0;
   flex-grow: 0; }
 
-.s2-multi .s2-search {
+.s25-multi .s25-search {
   flex-grow: 1; }
 
-.s2-item {
+.s25-item {
   cursor: pointer; }
 
-.s2-multi-values .s2-item {
+.s25-multi-values .s25-item {
   box-sizing: border-box;
   align-items: center; }
 
-.s2-multi-values .s2-remove {
+.s25-multi-values .s25-remove {
   display: flex;
   box-sizing: border-box;
   align-items: center;
   -webkit-box-align: center;
   align-items: center; }
 
-.s2-multi-values .s2-remove:active {
+.s25-multi-values .s25-remove:active {
   border: 0px; }
 
-.s2-multi-values .s2-remove-x {
+.s25-multi-values .s25-remove-x {
   display: inline-block;
   fill: currentColor;
   line-height: 1px;
   stroke: currentColor;
   stroke-width: 0; }
 
-.s2-multi-values .s2-label {
+.s25-multi-values .s25-label {
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
   overflow: hidden; }
 
-.s2-offscreen {
+.s25-offscreen {
   clip-path: inset(100%);
   clip: rect(1px, 1px, 1px, 1px);
   width: 1px;
@@ -91,83 +93,83 @@ content: "×";
   position: absolute;
   white-space: nowrap; }
 
-.s2-dropdown {
+.s25-dropdown {
   position: absolute;
   z-index: 1000000;
   box-sizing: border-box; }
 
-.s2-dropdown .s2-body {
+.s25-dropdown .s25-body {
   width: 100%;
   overflow-y: auto;
   position: relative;
   box-sizing: border-box; }
 
-.s2-dropdown .s2-options {
+.s25-dropdown .s25-options {
   width: 100%; }
 
-.s2-dropdown .s2-options .s2-item {
+.s25-dropdown .s25-options .s25-item {
   display: block;
   width: 100%;
   box-sizing: border-box; }
 
-.s2-no-search-results {
+.s25-no-search-results {
   /*! keep me */ }
 
-.s2-search-results-message {
+.s25-search-results-message {
   /*! keep me */ }
 
-.s2-search-results-loading {
+.s25-search-results-loading {
   /*! keep me */ }
 
-.s2-search-results-minimum-error {
+.s25-search-results-minimum-error {
   /*! keep me */ }
 
-.s2-search-results {
+.s25-search-results {
   /*! keep me */ }
 
-.s2-open {
+.s25-open {
   /*! keep me */ }
 
 /* skin */
-.s2-control {
+.s25-control {
   border: 1px solid #cccccc;
   background-color: #fafafa;
   border-radius: 2px; }
 
-.s2-control.s2-focused {
+.s25-control.s25-focused {
   border: 1px solid #4d90fe; }
 
-.s2-control.s2-focused.s2-open {
+.s25-control.s25-focused.s25-open {
   border-bottom: 0; }
 
-.s2-search:focus {
+.s25-search:focus {
   outline: 0; }
 
-.s2-multi .s2-toggle {
+.s25-multi .s25-toggle {
   width: 30px; }
 
-.s2-toggle > svg {
+.s25-toggle > svg {
   display: inline-block;
   margin: auto; }
 
-.s2-multi {
+.s25-multi {
   /*! keep me */ }
 
-.s2-multi .s2-search {
+.s25-multi .s25-search {
   margin-top: 2px;
   margin-bottom: 2px;
   margin-left: 4px; }
 
-.s2-multi-values {
+.s25-multi-values {
   padding: 2px 8px; }
 
-.s2-content {
+.s25-content {
   /*! keep me */ }
 
-.s2-multi-values:focus {
+.s25-multi-values:focus {
   outline: 0; }
 
-.s2-multi-values .s2-item {
+.s25-multi-values .s25-item {
   position: relative;
   padding-left: 12px;
   padding-right: 12px;
@@ -176,26 +178,26 @@ content: "×";
   margin: 2px;
   border: 1px solid #d8d8d8; }
 
-.s2-multi-values .s2-item.s2-active {
+.s25-multi-values .s25-item.s25-active {
   border: 1px solid #4d90fe; }
 
-.s2-multi-values .s2-item.s2-selected {
+.s25-multi-values .s25-item.s25-selected {
   padding-left: 20px;
   padding-right: 4px;
   text-align: right; }
 
-.s2-multi-values .s2-item.s2-selected::before {
+.s25-multi-values .s25-item.s25-selected::before {
   content: "\2713";
   position: absolute;
   left: 5px; }
 
-.s2-multi-values .s2-label {
+.s25-multi-values .s25-label {
   color: #222222;
   font-size: 85%;
   border-radios: 2px;
   padding: 3px 3px 3px 6px; }
 
-.s2-multi .s2-body .s2-remove {
+.s25-multi .s25-body .s25-remove {
   padding-left: 4px;
   padding-right: 4px;
   border-radios: 2px;
@@ -205,19 +207,19 @@ content: "×";
   outline: none;
   background-color: white; }
 
-.s2-multi .s2-body .s2-remove:focus {
+.s25-multi .s25-body .s25-remove:focus {
   border: 1px solid #4d90fe; }
 
-.s2-dropdown {
+.s25-dropdown {
   border: 1px solid #4d90fe;
   border-top: 0;
   background-color: white; }
 
-.s2-dropdown .s2-body {
+.s25-dropdown .s25-body {
   padding-top: 4px;
   padding-bottom: 4px; }
 
-.s2-live {
+.s25-live {
   border-radius: 2px;
   position: absolute;
   bottom: 0;
@@ -228,14 +230,14 @@ content: "×";
   border: 1px solid purple;
   overflow: scroll; }
 
-.s2-dropdown .s2-options .s2-item {
+.s25-dropdown .s25-options .s25-item {
   background-color: transparent;
   color: inherit;
   font-size: inherit;
   padding: 8px 12px; }
 
-.s2-dropdown .s2-options .s2-active {
+.s25-dropdown .s25-options .s25-active {
   background-color: #deebff; }
 
 
-/*# sourceMappingURL=select2.css.map*/
+/*# sourceMappingURL=select25.css.map*/

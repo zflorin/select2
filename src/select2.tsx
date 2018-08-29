@@ -179,23 +179,23 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         const searchLabel = typeof(props.searchLabel) === "function" ? props.searchLabel() : props.searchLabel;
         return (
             <div ref={this.controlRef} id={this.id} style={props.style} className={
-                cn(style.s2Multi, style.s2Control, {
-                    s2SearchResultsLoading: state.searchResultsLoading,
-                    s2Focused: state.focused,
-                    s2Open: state.open,
+                cn(style.s25Multi, style.s25Control, {
+                    s25SearchResultsLoading: state.searchResultsLoading,
+                    s25Focused: state.focused,
+                    s25Open: state.open,
                 })}>
-                <div className={style.s2Body}>
+                <div className={style.s25Body}>
                     {state.values.map((value, index) => {
                         return <input key={index} type="hidden" name={props.name} value={this.getItemId(value)}/>
                     })
                     }
                     {state.values.length > 0 &&
                     <React.Fragment>
-                        <label className={style.s2Offscreen} id={this.getValuesLabelDomId()}>
+                        <label className={style.s25Offscreen} id={this.getValuesLabelDomId()}>
                             {valuesLabel}
                         </label>
                         <div ref={this.valuesRef}
-                             className={style.s2MultiValues}
+                             className={style.s25MultiValues}
                              tabIndex={0}
                              role="listbox"
                              aria-orientation="horizontal"
@@ -210,7 +210,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                                 const selected = state.selectedValues.indexOf(index) >= 0;
                                 const active = state.activeValue == index;
                                 const id = this.getValueDomId(index);
-                                const classes = cn(style.s2Item, {s2Active: active, s2Selected: selected});
+                                const classes = cn(style.s25Item, {s25Active: active, s25Selected: selected});
                                 return (
                                     <div key={index}
                                          id={id}
@@ -219,7 +219,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                                          aria-selected={selected}
                                          aria-label={this.getItemLabel(value)}
                                          onClick={this.onValueClicked(index)}>
-                                        <div className={style.s2Content}>
+                                        <div className={style.s25Content}>
                                             {this.getValueContent(value)}
                                         </div>
                                     </div>
@@ -234,7 +234,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                         // REMOVE BUTTON
                         //
                         const disabled = state.selectedValues.length < 1;
-                        const className = cn(style.s2Remove, {s2Offscreen: state.values.length < 1});
+                        const className = cn(style.s25Remove, {s25Offscreen: state.values.length < 1});
                         return (
                             <button className={className}
                                     onClick={this.onRemoveSelectedValuesClicked}
@@ -250,11 +250,11 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                         );
                     })}
 
-                    <label htmlFor={searchId} className={style.s2Offscreen}>
+                    <label htmlFor={searchId} className={style.s25Offscreen}>
                         {searchLabel}
                     </label>
                     <input ref={this.searchRef}
-                           className={style.s2Search}
+                           className={style.s25Search}
                            type="text"
                            id={searchId}
                            value={state.search}
@@ -275,7 +275,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                 </div>
                 {/* s2body */}
 
-                <div className={style.s2Toggle}
+                <div className={style.s25Toggle}
                      aria-hidden={true}
                      onMouseDownCapture={this.onToggleMouseDownCapture}
                      onClick={this.onToggleClick}>
@@ -283,9 +283,9 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                 </div>
 
                 {state.open &&
-                <Dropdown control={this.controlRef.current} className={style.s2Dropdown}>
+                <Dropdown control={this.controlRef.current} className={style.s25Dropdown}>
 
-                    <div className={style.s2Body + " " + style.s2SearchResults}
+                    <div className={style.s25Body + " " + style.s25SearchResults}
                          style={{maxHeight: "120px"}}
                          ref={this.dropdownRef}
                          aria-busy={state.searchResultsLoading}
@@ -293,12 +293,12 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                          onScroll={this.onDropdownScroll}>
                         {state.searchResults && state.searchResults.length > 0 &&
                         (
-                            <div className={style.s2Options}
+                            <div className={style.s25Options}
                                  role="listbox"
                                  aria-activedescendant={this.getSearchResultDomId(state.activeSearchResult)}>
                                 {
                                     state.searchResults.map((item, i) => {
-                                        const className = cn(style.s2Item, {s2Active: state.activeSearchResult == i});
+                                        const className = cn(style.s25Item, {s25Active: state.activeSearchResult == i});
                                         return (
                                             <div key={i}
                                                  className={className}
@@ -317,14 +317,14 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
                         )}
                         {state.showNoSearchResultsFound &&
-                        <div className={style.s2NoSearchResults}>{dict.noSearchResults()}</div>
+                        <div className={style.s25NoSearchResults}>{dict.noSearchResults()}</div>
                         }
                         {(state.searchResultsLoading || state.showLoadMoreResults) &&
                         <div ref={this.loadingMoreResults}
-                             className={cn(style.s2SearchResultsLoading, style.s2SearchResultsMessage)}>{dict.searchResultsLoading()}</div>
+                             className={cn(style.s25SearchResultsLoading, style.s25SearchResultsMessage)}>{dict.searchResultsLoading()}</div>
                         }
                         {(state.showMinimumCharactersError) &&
-                        <div className={cn(style.s2SearchResultsMinimumError, style.s2SearchResultsMessage)}>
+                        <div className={cn(style.s25SearchResultsMinimumError, style.s25SearchResultsMessage)}>
                             {dict.minimumCharactersMessage(state.search.length, props.minimumCharacters)}
                         </div>
                         }
