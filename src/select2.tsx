@@ -42,6 +42,7 @@ interface MultiSelectProps<T> {
     dictionary: Dictionary | string;
     openOnSearchFocus: boolean;
     minimumCharacters: number;
+    quietMillis: number;
 
 }
 
@@ -71,7 +72,8 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     static defaultProps = {
         dictionary: "en_us",
         openOnSearchFocus: true,
-        minimumCharacters: 0
+        minimumCharacters: 0,
+        quietMillis:-1
     }
 
 
@@ -88,6 +90,8 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     searchFocussedPragmatically: boolean;
     toggleWasOpen: boolean;
 
+    queryDebounced: (search:string, page:number)=>void;
+
     constructor(props: MultiSelectProps<T>) {
         super(props);
         this.id = "s2-multi-" + uuid();
@@ -97,6 +101,8 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         this.searchRef = React.createRef();
         this.loadingMoreResults = React.createRef();
         this.searchFocussedPragmatically = false;
+
+        this.queryDebounced=util.debounce(this.props.quietMillis, this.query, this);
 
         this.state = ({
             focused: false,
@@ -561,7 +567,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
     open = () => {
-        this.search("");
+        this.search("", false);
         this.focusSearch();
     }
 
@@ -620,7 +626,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
 
-    async search(value: string) {
+    async search(value: string, debounce:boolean) {
         const props = this.props;
         const dict = dictionary(props.dictionary);
         const searchPage = 0;
@@ -648,8 +654,21 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
         // todo - throttle this announcement?
         announce.politely(dict.searchResultsLoading());
+
+        if (debounce) {
+            this.queryDebounced(value, searchPage);
+        } else {
+            this.query(value, searchPage);
+        }
+
+    }
+
+
+
+    async query(search:string, page:number) {
         try {
-            const result = await this.props.query(value, searchPage);
+            const dict = dictionary(this.props.dictionary);
+            const result = await this.props.query(search, page);
             let searchResultDomIds: number[] = [];
             result.values.forEach(() => {
                 searchResultDomIds.push(uuid())
@@ -673,12 +692,13 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
             // TODO for now assuming all failures are cancellations, should we treat them differently?
 
         }
-
     }
+
+
 
     onSearchChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        this.search(value);
+        this.search(value, true);
     }
 
     async onLoadMore() {

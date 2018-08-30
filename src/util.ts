@@ -44,6 +44,26 @@ export const uuid = (function () {
 })();
 
 
+export function debounce(quiet: number, delegate: (...args: any[]) => void, that: Object) {
+    var timeout: number = undefined;
+    if (quiet < 0) {
+        return function () {
+            delegate.apply(that, arguments);
+        }
+    } else {
+        return function () {
+            var args = arguments;
+            if (timeout) {
+                window.clearTimeout(timeout);
+            }
+            timeout = window.setTimeout(function () {
+                timeout = undefined;
+                delegate.apply(that, args);
+            }, quiet);
+        };
+    }
+}
+
 export function getScrollParents(el: HTMLElement): EventTarget[] {
     const style = window.getComputedStyle(el);
     const elementPosition = style.position;
@@ -123,4 +143,5 @@ export function calculateVerticalVisibility(container: HTMLElement, element: HTM
 export function scope(delegate: () => React.ReactChild) {
     return delegate();
 }
+
 

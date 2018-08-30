@@ -57,6 +57,9 @@ ReactDOM.render(
         searchLabel="Add Country"
         query={query}
         minimumCharacters={2}
+        openOnSearchFocus={true}
+        quietMillis={100}
+
     />
     , document.getElementById("multi1")
 );
@@ -72,7 +75,6 @@ ReactDOM.render(
         valuesLabel="Countries"
         searchLabel="Add Country"
         query={query}
-
         openOnSearchFocus={false}
     />
     , document.getElementById("multi2")
