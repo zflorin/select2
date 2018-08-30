@@ -44,4 +44,4 @@
         });
     };
 
-})(jQuery, window, document, React, ReactDOM, select2);
+})(jQuery, window, document, React, ReactDOM, select25);
