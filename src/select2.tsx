@@ -223,6 +223,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                                          className={classes}
                                          role="option"
                                          aria-selected={selected}
+                                         aria-checked={selected}
                                          aria-label={this.getItemLabel(value)}
                                          onClick={this.onValueClicked(index)}>
                                         <div className={style.s25Content}>
