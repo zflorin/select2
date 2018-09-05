@@ -8,49 +8,58 @@
 
     <!-- polyfill for IE11 -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6"></script>
-
+    <style>
+        section {padding: 10px; }
+    </style>
 </head>
 <body>
 <section role="main">
 
-    <h1>Hello there</h1>
-    <a href="#">test link</a>
+    <h1>Select 2 Dev Playground</h1>
+
     <section>
-        <label for="text">Text</label> <input id="text" type="text" autoFocus/>
+        <input type="text" autofocus/>
     </section>
-    <h2>Section 1</h2>
+
     <section>
-        <div style="width:100%;">
-            <div id="root"></div>
+        <div style="width:400px;">
+            <div id="multi1"></div>
         </div>
     </section>
-    <br/><br/><br/><br/><br/><br/><br/><br/>
-    <sectopn>
+
+    <section>
+        <input type="text" autofocus/>
+    </section>
+
+    <section>
         <select multiple>
-            <option>hello</option>
-            <option>goodbye</option>
+            <option>option 1</option>
+            <option>option 2</option>
+            <option>option 3</option>
+            <option>option 4</option>
         </select>
-    </sectopn>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    </section>
+
+    <section>
+        <select>
+            <option>option 1</option>
+            <option>option 2</option>
+            <option>option 3</option>
+            <option>option 4</option>
+        </select>
+    </section>
 
 
-    <div style="max-height:100px; overflow: scroll">
-
-    <h2>Section 2</h2>
     <section>
         <div style="width:300px;">
-            <div id="root2"></div>
+            <div id="multi2"></div>
         </div>
     </section>
 
 
     <section>
-        content below
+        <input type="text" autofocus/>
     </section>
-
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-    </div>
 
 </section>
 
