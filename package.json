@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js --mode development --hot",
+    "dev-dist": "webpack --config webpack.config.dev.js --mode production",
     "dist": "webpack --config webpack.config.dist.js --display-modules --mode production"
   },
   "keywords": [],

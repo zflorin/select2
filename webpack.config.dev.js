@@ -12,7 +12,7 @@ module.exports = {
         path: path.join(__dirname, "dev", "dist"),
         filename: "index_bundle.js"
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
