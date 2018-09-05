@@ -32,14 +32,14 @@ const query = (function () {
                             results.push(country);
                         }
                         count++;
-                        if (count > offset + limit) {
+                        if (count >= offset + limit) {
                             break;
                         }
                     }
                 }
                 previousTimeout = undefined;
                 previousReject = undefined;
-                resolve({values: results, more: results.length == limit})
+                resolve({values: results, more: results.length >= limit})
             }, delay);
         });
     }
