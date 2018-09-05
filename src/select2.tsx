@@ -314,6 +314,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                                                  onMouseMove={this.onMouseEnterSearchResult(i)}
                                                  onMouseUp={this.onSearchResultClicked(i)}
                                                  role="option"
+                                                 aria-posinset={i+1}
                                                  aria-selected={state.activeSearchResult === i}
                                             >
                                                 {this.getResultContent(item)}
