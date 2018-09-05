@@ -1,3 +1,0 @@
-TODOS
-* clean up old rows in aria-live region
-* add aria-keyshortcuts for remove selected values key
