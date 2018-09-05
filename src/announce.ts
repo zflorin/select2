@@ -25,27 +25,28 @@ export function initialize() {
 }
 
 export function assertively(message: string) {
-    const node = document.createElement("div");
-    node.appendChild(document.createTextNode(message));
-    document.getElementById("s25-live-assertive").appendChild(node);
-    // TODO clean up old nodes
-
-
-    // for debugging
-    const live = document.getElementById("s25-live");
-    live.scrollTop = live.scrollHeight;
-
+    add(message, document.getElementById("s25-live-assertive"));
 }
 
 export function politely(message: string) {
+    add(message, document.getElementById("s25-live-polite"))
+}
+
+function add(message: string, container: HTMLElement) {
     const node = document.createElement("div");
     node.appendChild(document.createTextNode(message));
-    document.getElementById("s25-live-polite").appendChild(node);
+    container.appendChild(node);
 
+    // clean up old nodes
 
-    // for debugging
-    const live = document.getElementById("s25-live");
-    live.scrollTop = live.scrollHeight;
+    let collection=document.getElementById("s25-live-assertive");
+    while (collection.firstChild && collection.firstChild != node) {
+        collection.removeChild(collection.firstChild);
+    }
+    collection=document.getElementById("s25-live-polite");
+    while (collection.firstChild && collection.firstChild != node) {
+        collection.removeChild(collection.firstChild);
+    }
 
-    // TODO clean up old nodes
 }
+
