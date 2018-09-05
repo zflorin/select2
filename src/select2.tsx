@@ -436,14 +436,16 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         //console.log(event.key);
 
         switch (event.key) {
-            case Key.ArrowLeft: {
+            case Key.ArrowLeft:
+            case Key.ArrowUp:{
                 if (active > 0) {
                     this.setActiveValue(active - 1);
                 }
                 event.preventDefault();
                 break;
             }
-            case Key.ArrowRight: {
+            case Key.ArrowRight:
+            case Key.ArrowDown:{
                 if (active < values.length - 1) {
                     this.setActiveValue(active + 1);
                 }
