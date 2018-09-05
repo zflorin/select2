@@ -5,8 +5,8 @@ import * as React from "react";
 export const cn = classNames.bind(style);
 
 export function extend(...params: object[]) {
-    for (var i = 1; i < arguments.length; i++)
-        for (var key in arguments[i])
+    for (let i = 1; i < arguments.length; i++)
+        for (let key in arguments[i])
             if (arguments[i].hasOwnProperty(key)) {
                 if (typeof arguments[0][key] === 'object'
                     && typeof arguments[i][key] === 'object')
@@ -34,7 +34,7 @@ export const Key = {
     Delete: "Delete",
     Clear: "Clear",
     Escape: "Escape"
-}
+};
 
 export const uuid = (function () {
     let counter = 0;
@@ -45,14 +45,14 @@ export const uuid = (function () {
 
 
 export function debounce(quiet: number, delegate: (...args: any[]) => void, that: Object) {
-    var timeout: number = undefined;
+    let timeout: number = undefined;
     if (quiet < 0) {
         return function () {
             delegate.apply(that, arguments);
         }
     } else {
         return function () {
-            var args = arguments;
+            const args = arguments;
             if (timeout) {
                 window.clearTimeout(timeout);
             }
@@ -110,7 +110,7 @@ export function throttle(delay: number, callback: () => void): () => void {
             }, delay);
         }
     };
-};
+}
 
 
 export function calculateVerticalVisibility(container: HTMLElement, element: HTMLElement): "hidden" | "partial-top" | "partial-bottom" | "visible" {

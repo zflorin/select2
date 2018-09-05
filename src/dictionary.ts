@@ -1,10 +1,15 @@
 export interface Dictionary {
-    valueAdded: (itemLabel: string) => string;
+    valueAdded(itemLabel: string): string;
 
-    noSearchResults: () => string;
-    searchResultsLoading: () => string;
-    removeButtonTitle: () => string;
-    minimumCharactersMessage: (len: number, min: number) => string;
+    noSearchResults(): string;
+
+    searchResultsLoading(): string;
+
+    removeButtonTitle(): string;
+
+    minimumCharactersMessage(len: number, min: number): string;
+
+    instructions(): string;
 }
 
 class AmericanEnglishDictionary implements Dictionary {
@@ -28,6 +33,10 @@ class AmericanEnglishDictionary implements Dictionary {
     minimumCharactersMessage(len: number, min: number) {
         const delta = min - len;
         return "Please enter " + delta + " more character" + (delta > 1 ? "s" : "");
+    }
+
+    instructions(): string {
+        return "Items can be removed from this list box by selecting them and activating 'Remove selected values' button. Items can be added by selecting them in the adjacent combobox.";
     }
 }
 

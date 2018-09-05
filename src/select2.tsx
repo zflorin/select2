@@ -74,7 +74,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         openOnSearchFocus: true,
         minimumCharacters: 0,
         quietMillis:-1
-    }
+    };
 
 
     id: string;
@@ -183,6 +183,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         const dropdownId = this.getDropdownDomId();
         const valuesLabel = typeof(props.valuesLabel) === "function" ? props.valuesLabel() : props.valuesLabel;
         const searchLabel = typeof(props.searchLabel) === "function" ? props.searchLabel() : props.searchLabel;
+
         return (
             <div ref={this.controlRef} id={this.id} style={props.style} className={
                 cn(style.s25Multi, style.s25Control, {
@@ -197,6 +198,9 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                     }
                     {state.values.length > 0 &&
                     <React.Fragment>
+                        <span className={style.s25Offscreen} id={this.getInstructionsDomId()}>
+                            {dict.instructions()}
+                        </span>
                         <label className={style.s25Offscreen} id={this.getValuesLabelDomId()}>
                             {valuesLabel}
                         </label>
@@ -209,6 +213,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                              aria-multiselectable="true"
                              aria-label={valuesLabel}
                              aria-labelledby={this.getValuesLabelDomId()}
+                             aria-describedby={this.getInstructionsDomId()}
                              onKeyDown={this.onValuesKeyDown}
                              onFocus={this.onValuesFocus}
                              onBlur={this.onValuesBlur}>
@@ -411,11 +416,11 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         } else {
             this.focusSearch();
         }
-    }
+    };
 
     onValueClicked = (index: number) => (event: React.MouseEvent) => {
         this.toggleSelectedValue(index);
-    }
+    };
 
     onValuesFocus = (event: React.FocusEvent) => {
         let index = 0;
@@ -424,12 +429,12 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         }
         this.setActiveValue(index);
         this.setState({focused: true});
-    }
+    };
 
     onValuesBlur = (event: React.FocusEvent) => {
         this.setActiveValue(-1);
         this.setState({focused: false});
-    }
+    };
 
     onValuesKeyDown = (event: React.KeyboardEvent) => {
         const values = this.state.values;
@@ -480,20 +485,20 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                 break;
             }
         }
-    }
+    };
 
 
     onSearchResultClicked = (index: number) => (event: React.MouseEvent) => {
         this.selectSearchResult(index);
         event.preventDefault();
-    }
+    };
 
     onMouseDownSearchResult = (index: number) => (event: React.MouseEvent) => {
         if (this.state.activeSearchResult != index) {
             this.setActiveSearchResult(index);
         }
         event.preventDefault();
-    }
+    };
 
     onMouseEnterSearchResult = (index: number) => (event: React.MouseEvent) => {
         if (this.lastMouseClientX == event.clientX && this.lastMouseClientY == event.clientY) {
@@ -508,11 +513,11 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         if (this.state.activeSearchResult != index) {
             this.setActiveSearchResult(index);
         }
-    }
+    };
 
     setActiveSearchResult = (index: number) => {
         this.setState({activeSearchResult: index});
-    }
+    };
 
     onSearchKeyDown = (event: React.KeyboardEvent) => {
         const results = this.state.searchResults;
@@ -568,12 +573,12 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                 break;
             }
         }
-    }
+    };
 
     open = () => {
         this.search("", false);
         this.focusSearch();
-    }
+    };
 
     close() {
         this.setState({
@@ -603,11 +608,11 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     onRemoveValuesFocus = (event: React.FocusEvent) => {
         this.setState({focused: true});
-    }
+    };
 
     onRemoveValuesBlur = (event: React.FocusEvent) => {
         this.setState({focused: false});
-    }
+    };
 
 
     focusSearch() {
@@ -623,11 +628,11 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         }
 
         this.searchFocussedPragmatically = false;
-    }
+    };
 
     onSearchBlur = (event: React.FocusEvent) => {
         this.setState({focused: false, open: false, search: ""});
-    }
+    };
 
 
     async search(value: string, debounce:boolean) {
@@ -703,7 +708,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     onSearchChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         this.search(value, true);
-    }
+    };
 
     async onLoadMore() {
         if (this.state.searchResultsLoading) {
@@ -761,7 +766,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
             this.onLoadMore();
         }
 
-    }
+    };
 
 
     onRemove = (index: number) => (event: React.MouseEvent) => {
@@ -791,12 +796,15 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
             }
 
         });
-    }
+    };
 
     getValuesLabelDomId() {
         return this.id + "-values-label";
     }
 
+    getInstructionsDomId() {
+        return this.id + "-instructions";
+    }
 
     getSearchDomId() {
         return this.id + "-search";
@@ -819,7 +827,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     onToggleMouseDownCapture = (event: React.MouseEvent) => {
         this.toggleWasOpen = this.state.open;
-    }
+    };
 
     onToggleClick = (event: React.MouseEvent) => {
         if (this.toggleWasOpen) {

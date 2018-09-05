@@ -13,7 +13,7 @@ export class Dropdown extends React.PureComponent<DropdownProps, {}> {
     container: HTMLElement;
 
     scrollParents: EventTarget[];
-    private throttledPosition: () => void;
+    private readonly throttledPosition: () => void;
 
     constructor(props: DropdownProps) {
         super(props);
