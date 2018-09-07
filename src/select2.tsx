@@ -284,15 +284,17 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                            aria-busy={state.searchResultsLoading}
                     />
 
+                    <div className={style.s25Toggle}
+                         aria-hidden={true}
+                         onMouseDownCapture={this.onToggleMouseDownCapture}
+                         onClick={this.onToggleClick}>
+                        <IconToggle height={20} width={20}/>
+                    </div>
+
                 </div>
                 {/* s2body */}
 
-                <div className={style.s25Toggle}
-                     aria-hidden={true}
-                     onMouseDownCapture={this.onToggleMouseDownCapture}
-                     onClick={this.onToggleClick}>
-                    <IconToggle height={20} width={20}/>
-                </div>
+
 
                 {state.open &&
                 <Dropdown control={this.controlRef.current} className={style.s25Dropdown}>
