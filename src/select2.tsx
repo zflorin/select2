@@ -21,7 +21,7 @@ interface MultiSelectProps<T> {
 
     itemId: ((item: T) => string) | (keyof T);
     itemLabel: ((item: T) => string) | (keyof T);
-    valueContent: ((item: T) => (string | React.ReactChild)) | (keyof T);
+    valueContent?: ((item: T) => (string | React.ReactChild)) | (keyof T);
     resultContent?: ((item: T) => (string | React.ReactChild)) | (keyof T);
 
     valuesLabel: (() => string) | string;
@@ -360,7 +360,9 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
     getValueContent(item: T) {
-        if (typeof this.props.valueContent === "function") {
+        if (this.props.valueContent === undefined) {
+            return this.getItemLabel(item);
+        } else if (typeof this.props.valueContent === "function") {
             return this.props.valueContent(item);
         } else {
             return item[this.props.valueContent];
@@ -376,14 +378,12 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
     getResultContent(item: T) {
-        if (this.props.resultContent) {
-            if (typeof this.props.resultContent === "function") {
-                return this.props.resultContent(item);
-            } else {
-                return item[this.props.resultContent];
-            }
-        } else {
+        if (this.props.resultContent === undefined) {
             return this.getValueContent(item);
+        } else if (typeof this.props.resultContent === "function") {
+            return this.props.resultContent(item);
+        } else {
+            return item[this.props.resultContent];
         }
     }
 
@@ -699,9 +699,9 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                 showLoadMoreResults: result.more,
                 searchPage: 0
             });
+
         } catch (e) {
             // TODO for now assuming all failures are cancellations, should we treat them differently?
-
         }
     }
 

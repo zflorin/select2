@@ -6,24 +6,38 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js --mode development --hot",
     "dev-dist": "webpack --config webpack.config.dev.js --mode production",
-    "dist": "webpack --config webpack.config.dist.js --display-modules --mode production"
+    "dist": "webpack --config webpack.config.dist.js --display-modules --mode production",
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "keywords": [],
   "author": "Igor Vaynberg",
   "license": "MIT",
   "devDependencies": {
+    "@types/enzyme": "^3.1.13",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/enzyme-to-json": "^1.5.2",
+    "@types/jest": "^23.3.1",
+    "@types/react-test-renderer": "^16.0.2",
     "awesome-typescript-loader": "^5.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.0.0-rc.13",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.5.0",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.3",
+    "react-test-renderer": "^16.4.2",
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.21.0",
+    "ts-jest": "^23.1.4",
     "typescript": "^3.0.1",
     "typings-for-css-modules-loader": "^1.7.0",
     "webpack": "^4.16.5",
@@ -37,5 +51,28 @@
     "classnames": "^2.2.6",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/setup.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   }
 }

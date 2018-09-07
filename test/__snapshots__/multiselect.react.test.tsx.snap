@@ -1,0 +1,419 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Initial Render 1`] = `
+<div
+  className="s25Multi s25Control"
+  id="s2-multi-0"
+>
+  <div
+    className="s25Body"
+  >
+    <button
+      aria-disabled={true}
+      className="s25Remove s25Offscreen"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      title="Remove selected values"
+    >
+      <span>
+        <IconRemove
+          height={20}
+          width={20}
+        />
+      </span>
+    </button>
+    <label
+      className="s25Offscreen"
+      htmlFor="s2-multi-0-search"
+    >
+      Search Label
+    </label>
+    <input
+      aria-autocomplete="none"
+      aria-busy={false}
+      aria-controls="s2-multi-0-dropdown"
+      aria-expanded={false}
+      aria-haspopup="true"
+      aria-owns="s2-multi-0-dropdown"
+      className="s25Search"
+      id="s2-multi-0-search"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      type="text"
+      value=""
+    />
+    <div
+      aria-hidden={true}
+      className="s25Toggle"
+      onClick={[Function]}
+      onMouseDownCapture={[Function]}
+    >
+      <IconToggle
+        height={20}
+        width={20}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Minimum Characters For Search: enter one more 1`] = `
+<div
+  className="s25Multi s25Control s25Open"
+  id="s2-multi-2"
+>
+  <div
+    className="s25Body"
+  >
+    <button
+      aria-disabled={true}
+      className="s25Remove s25Offscreen"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      title="Remove selected values"
+    >
+      <span>
+        <IconRemove
+          height={20}
+          width={20}
+        />
+      </span>
+    </button>
+    <label
+      className="s25Offscreen"
+      htmlFor="s2-multi-2-search"
+    >
+      Search Label
+    </label>
+    <input
+      aria-autocomplete="none"
+      aria-busy={false}
+      aria-controls="s2-multi-2-dropdown"
+      aria-expanded={true}
+      aria-haspopup="true"
+      aria-owns="s2-multi-2-dropdown"
+      className="s25Search"
+      id="s2-multi-2-search"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      type="text"
+      value="ab"
+    />
+    <div
+      aria-hidden={true}
+      className="s25Toggle"
+      onClick={[Function]}
+      onMouseDownCapture={[Function]}
+    >
+      <IconToggle
+        height={20}
+        width={20}
+      />
+    </div>
+  </div>
+  <Dropdown
+    className="s25Dropdown"
+    control={null}
+  >
+    <div
+      aria-busy={false}
+      className="s25Body s25SearchResults"
+      id="s2-multi-2-dropdown"
+      onScroll={[Function]}
+      style={
+        Object {
+          "maxHeight": "120px",
+        }
+      }
+    >
+      <div
+        className="s25SearchResultsMinimumError s25SearchResultsMessage"
+      >
+        Please enter 1 more character
+      </div>
+    </div>
+  </Dropdown>
+</div>
+`;
+
+exports[`Minimum Characters For Search: enter two more 1`] = `
+<div
+  className="s25Multi s25Control s25Open"
+  id="s2-multi-2"
+>
+  <div
+    className="s25Body"
+  >
+    <button
+      aria-disabled={true}
+      className="s25Remove s25Offscreen"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      title="Remove selected values"
+    >
+      <span>
+        <IconRemove
+          height={20}
+          width={20}
+        />
+      </span>
+    </button>
+    <label
+      className="s25Offscreen"
+      htmlFor="s2-multi-2-search"
+    >
+      Search Label
+    </label>
+    <input
+      aria-autocomplete="none"
+      aria-busy={false}
+      aria-controls="s2-multi-2-dropdown"
+      aria-expanded={true}
+      aria-haspopup="true"
+      aria-owns="s2-multi-2-dropdown"
+      className="s25Search"
+      id="s2-multi-2-search"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      type="text"
+      value="a"
+    />
+    <div
+      aria-hidden={true}
+      className="s25Toggle"
+      onClick={[Function]}
+      onMouseDownCapture={[Function]}
+    >
+      <IconToggle
+        height={20}
+        width={20}
+      />
+    </div>
+  </div>
+  <Dropdown
+    className="s25Dropdown"
+    control={null}
+  >
+    <div
+      aria-busy={false}
+      className="s25Body s25SearchResults"
+      id="s2-multi-2-dropdown"
+      onScroll={[Function]}
+      style={
+        Object {
+          "maxHeight": "120px",
+        }
+      }
+    >
+      <div
+        className="s25SearchResultsMinimumError s25SearchResultsMessage"
+      >
+        Please enter 2 more characters
+      </div>
+    </div>
+  </Dropdown>
+</div>
+`;
+
+exports[`Minimum Characters For Search: results 1`] = `
+<div
+  className="s25Multi s25Control s25Open"
+  id="s2-multi-2"
+>
+  <div
+    className="s25Body"
+  >
+    <button
+      aria-disabled={true}
+      className="s25Remove s25Offscreen"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      title="Remove selected values"
+    >
+      <span>
+        <IconRemove
+          height={20}
+          width={20}
+        />
+      </span>
+    </button>
+    <label
+      className="s25Offscreen"
+      htmlFor="s2-multi-2-search"
+    >
+      Search Label
+    </label>
+    <input
+      aria-activedescendant="s2-multi-2-result-3"
+      aria-autocomplete="none"
+      aria-busy={false}
+      aria-controls="s2-multi-2-dropdown"
+      aria-expanded={true}
+      aria-haspopup="true"
+      aria-owns="s2-multi-2-dropdown"
+      className="s25Search"
+      id="s2-multi-2-search"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      type="text"
+      value="abc"
+    />
+    <div
+      aria-hidden={true}
+      className="s25Toggle"
+      onClick={[Function]}
+      onMouseDownCapture={[Function]}
+    >
+      <IconToggle
+        height={20}
+        width={20}
+      />
+    </div>
+  </div>
+  <Dropdown
+    className="s25Dropdown"
+    control={null}
+  >
+    <div
+      aria-busy={false}
+      className="s25Body s25SearchResults"
+      id="s2-multi-2-dropdown"
+      onScroll={[Function]}
+      style={
+        Object {
+          "maxHeight": "120px",
+        }
+      }
+    >
+      <div
+        aria-activedescendant="s2-multi-2-result-3"
+        className="s25Options"
+        role="listbox"
+      >
+        <div
+          aria-posinset={1}
+          aria-selected={true}
+          className="s25Item s25Active"
+          id="s2-multi-2-result-3"
+          key="0"
+          onMouseDown={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
+          role="option"
+        >
+          abc-0
+        </div>
+      </div>
+      <div
+        className="s25SearchResultsLoading s25SearchResultsMessage"
+      >
+        Loading...
+      </div>
+    </div>
+  </Dropdown>
+</div>
+`;
+
+exports[`No Results 1`] = `
+<div
+  className="s25Multi s25Control s25Open"
+  id="s2-multi-1"
+>
+  <div
+    className="s25Body"
+  >
+    <button
+      aria-disabled={true}
+      className="s25Remove s25Offscreen"
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      title="Remove selected values"
+    >
+      <span>
+        <IconRemove
+          height={20}
+          width={20}
+        />
+      </span>
+    </button>
+    <label
+      className="s25Offscreen"
+      htmlFor="s2-multi-1-search"
+    >
+      Search Label
+    </label>
+    <input
+      aria-autocomplete="none"
+      aria-busy={false}
+      aria-controls="s2-multi-1-dropdown"
+      aria-expanded={true}
+      aria-haspopup="true"
+      aria-owns="s2-multi-1-dropdown"
+      className="s25Search"
+      id="s2-multi-1-search"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      type="text"
+      value="abc"
+    />
+    <div
+      aria-hidden={true}
+      className="s25Toggle"
+      onClick={[Function]}
+      onMouseDownCapture={[Function]}
+    >
+      <IconToggle
+        height={20}
+        width={20}
+      />
+    </div>
+  </div>
+  <Dropdown
+    className="s25Dropdown"
+    control={null}
+  >
+    <div
+      aria-busy={false}
+      className="s25Body s25SearchResults"
+      id="s2-multi-1-dropdown"
+      onScroll={[Function]}
+      style={
+        Object {
+          "maxHeight": "120px",
+        }
+      }
+    >
+      <div
+        className="s25NoSearchResults"
+      >
+        No results available
+      </div>
+    </div>
+  </Dropdown>
+</div>
+`;
