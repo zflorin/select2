@@ -51,8 +51,8 @@ ReactDOM.render(
         values={countries.splice(0, 3)}
         itemId="code"
         itemLabel={(c) => c.name}
-        valueContent={(item)=><div style={{color:"green"}}>{item.name}</div>}
-        resultContent={(item)=><div style={{color:"blue"}}>{item.name}</div>}
+        valueContent={(item)=><div>{item.name}</div>}
+        resultContent={(item)=><div>{item.name}</div>}
         valuesLabel="Countries"
         searchLabel="Add Country"
         query={query}

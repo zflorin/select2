@@ -1,4 +1,11 @@
-$color-focus: rgb(77, 144, 254);
+
+$color-focus: #4D90FE;
+$color-item-bkg: #0073E6;
+$color-item-text: #fff;
+$border: 1px solid #ddd;
+$border-focus: 1px solid $color-focus;
+$border-radius: 5px;
+$dropdown-padding: 8px 10px;
 
 /*
  content: "✓";
@@ -8,7 +15,7 @@ content: "×";
 .s25-control {
   position: relative;
   box-sizing: border-box;
-  min-height: 38px;
+  min-height: 36px;
   width: 100%;
 
 }
@@ -20,9 +27,24 @@ content: "×";
 
 .s25-multi .s25-body {
   flex-grow: 1;
-
   display: flex;
   flex-wrap: wrap;
+}
+
+.s25-multi .s25-multi-values {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  
+	.s25-item {
+		cursor: pointer;
+		box-sizing: border-box;
+		align-items: center;
+	}
+}
+
+.s25-multi .s25-search {
+  flex-grow: 1;
 }
 
 .s25-multi .s25-toggle {
@@ -32,56 +54,17 @@ content: "×";
   box-sizing: border-box;
 }
 
-.s25-multi .s25-multi-values {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.s25-multi .s25-multi-values .s25-remove {
-  flex-shrink: 0;
-  flex-grow: 0;
-}
-
-.s25-multi .s25-search {
-  flex-grow: 1;
-}
-
-.s25-item {
+.s25-multi .s25-remove {
   cursor: pointer;
-}
-
-.s25-multi-values .s25-item {
-  box-sizing: border-box;
-  align-items: center;
-}
-
-.s25-multi-values .s25-remove {
-  display: flex;
-  box-sizing: border-box;
-  align-items: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.s25-multi-values .s25-remove:active {
-  border: 0px;
-}
-
-.s25-multi-values .s25-remove-x {
-  display: inline-block;
-  fill: currentColor;
-  line-height: 1px;
-  stroke: currentColor;
-  stroke-width: 0;
-}
-
-.s25-multi-values .s25-label {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  box-sizing: border-box;
-  overflow: hidden;
+  
+	&:disabled {
+		cursor: default;
+	}
+	
+	&:active {
+		border: 0px;
+	}
+  
 }
 
 .s25-offscreen {
@@ -98,33 +81,32 @@ content: "×";
   position: absolute;
   z-index: 1000000;
   box-sizing: border-box;
-}
-
-.s25-dropdown .s25-body {
-  width: 100%;
-
-  overflow-y: auto;
-  position: relative;
-  box-sizing: border-box;
-}
-
-.s25-dropdown .s25-options {
-  width: 100%;
-}
-
-.s25-dropdown .s25-options .s25-item {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
+  
+	.s25-body {
+		width: 100%;
+		overflow-y: auto;
+		position: relative;
+		box-sizing: border-box;
+	}
+	
+	.s25-options {
+		width: 100%;
+		
+		.s25-item {
+			display: block;
+			width: 100%;
+			box-sizing: border-box;
+		}
+	}
 }
 
 .s25-no-search-results {
-  /*! keep me */
+  padding: $dropdown-padding;
 
 }
 
 .s25-search-results-message {
-  /*! keep me */
+  padding: $dropdown-padding;
 }
 
 .s25-search-results-loading {
@@ -148,21 +130,22 @@ content: "×";
 /* skin */
 
 .s25-control {
-  border: 1px solid rgb(204, 204, 204);
-  background-color: rgb(250, 250, 250);
-  border-radius: 2px;
-}
+  border: $border;
+  background-color: #fff;
+  border-radius: $border-radius;
 
-.s25-control.s25-focused {
-  border: 1px solid $color-focus;
-}
-
-.s25-control.s25-focused.s25-open {
-  border-bottom: 0;
+	&.s25-focused {
+		border: $border-focus;
+	
+		&.s25-open {
+			border-bottom: none;
+			border-radius: $border-radius $border-radius 0 0;
+		}
+	}
 }
 
 .s25-control .s25-body {
-
+  margin-right: 35px;
 }
 
 .s25-search:focus {
@@ -184,14 +167,15 @@ content: "×";
 }
 
 .s25-multi .s25-search {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 4px;
-
+  margin: 3px;
+  padding: 0 5px;
+  border: $border;
+  font-size: 100%;
+  line-height: 24px;
 }
 
 .s25-multi-values {
-  padding: 2px 8px;
+  padding: 0;
 }
 
 .s25-content {
@@ -204,65 +188,90 @@ content: "×";
 
 .s25-multi-values .s25-item {
   position: relative;
-  padding-left: 12px;
-  padding-right: 12px;
-  border-radius: 4px;
-  background-color: rgb(245, 245, 245);
-  margin: 2px;
-  border: 1px solid rgb(216, 216, 216);
-}
+  padding: 5px 12px 5px 18px;
+  border-radius: $border-radius;
+  background-color: $color-item-bkg;
+  color: $color-item-text;
+  margin: 3px 0 0 3px;
+  transition: background .2s;
+  
+  	&:hover {
+	  	background-color: darken( $color-item-bkg, 5% );
+  	}
+  
+	&.s25-active {
+		box-shadow: inset 0 0 0 3px #67B3FF;
+	}
 
-.s25-multi-values .s25-item.s25-active {
-  border: 1px solid $color-focus;
-}
-
-.s25-multi-values .s25-item.s25-selected {
-  padding-left: 20px;
-  padding-right: 4px;
-  text-align: right;
-}
-
-.s25-multi-values .s25-item.s25-selected::before {
-  content: "✓";
-  position: absolute;
-  left: 5px;
+	&.s25-item.s25-selected {
+		text-align: right;
+		
+		&:before {
+			content: "✓";
+			position: absolute;
+			left: 5px;
+		}
+	}
 }
 
 .s25-multi-values .s25-label {
   color: rgb(34, 34, 34);
   font-size: 85%;
-  border-radios: 2px;
+  border-radius: $border-radius;
   padding: 3px 3px 3px 6px;
 }
 
 .s25-multi .s25-body .s25-remove {
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radios: 2px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 4px;
+  border: none;
+  border-radius: 0 $border-radius $border-radius 0;
+  padding: 0 5px;
   outline: none;
-  background-color: white;
-}
-
-.s25-multi .s25-body .s25-remove:focus {
-  border: 1px solid $color-focus;
+  background-color: #f1f1f1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: background .2s;
+	
+	span svg {
+		fill: #ccc;
+		transition: fill .2s;
+	}
+	
+	&:not(:disabled) {
+		background-color: lighten( $color-item-bkg, 50% );
+	
+		&:hover {
+		  	background-color: lighten( $color-item-bkg, 45% );
+		  	
+	  	}
+	  	
+  		span svg {
+			fill: $color-item-bkg;
+		}	
+	}	
+		
+	&:focus {
+		border: $border-focus;
+	}
+	
 }
 
 .s25-dropdown {
-  border: 1px solid $color-focus;
-  border-top: 0;
+  border: $border-focus;
+  border-top: $border;
+  border-radius: 0 0 $border-radius $border-radius;
   background-color: rgb(255, 255, 255);
-}
 
-.s25-dropdown .s25-body {
-  padding-top: 4px;
-  padding-bottom: 4px;
+
+	.s25-body {
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
 }
 
 .s25-live {
-  border-radius: 2px;
+  border-radius: $border-radius;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -275,16 +284,15 @@ content: "×";
 
 .s25-dropdown .s25-options {
 
-}
+	.s25-item {
+		background-color: transparent;
+		color: inherit;
+		font-size: inherit;
+		padding: $dropdown-padding;
+	}
 
-.s25-dropdown .s25-options .s25-item {
-  background-color: transparent;
-  color: inherit;
-  font-size: inherit;
-  padding: 8px 12px;
-}
-
-.s25-dropdown .s25-options .s25-active {
-  background-color: rgb(222, 235, 255);
+	.s25-active {
+		background-color: lighten( $color-item-bkg, 50% );
+	}
 }
 

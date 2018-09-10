@@ -2,3 +2,4 @@
 node_modules
 dev/dist/*
 !dev/dist/.gitkeep
+/package-lock.json
