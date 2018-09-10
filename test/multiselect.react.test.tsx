@@ -46,8 +46,7 @@ test("No Results", async () => {
     expect(toJson(component)).toMatchSnapshot();
 });
 
-test("Minimum Characters For Search", async ()=> {
-
+test("Some Results", async () => {
     let component = shallow(
         <MultiSelect
             name="test"
@@ -56,17 +55,11 @@ test("Minimum Characters For Search", async ()=> {
             itemLabel="text"
             valuesLabel="Values Label"
             searchLabel="Search Label"
-            query={makeQuery(1)}
-            minimumCharacters={3}
+            query={makeQuery(2)}
         />);
 
-    await search(component, "a");
-    expect(toJson(component)).toMatchSnapshot("enter two more");
-
-    await search(component, "ab");
-    expect(toJson(component)).toMatchSnapshot("enter one more");
-
     await search(component, "abc");
-    expect(toJson(component)).toMatchSnapshot("results");
 
+    expect(toJson(component)).toMatchSnapshot();
 });
+

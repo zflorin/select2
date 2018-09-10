@@ -43,7 +43,7 @@ class AmericanEnglishDictionary implements Dictionary {
 const dictionaries = new Map<string, Dictionary>();
 dictionaries.set("en_us", new AmericanEnglishDictionary());
 
-export function dictionary(dict: Dictionary | string): Dictionary {
+export function dictionary(dict: (Dictionary | string) = undefined): Dictionary {
     const fallback = dictionaries.get("en_us");
 
     if (!dict) {

@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Minimum Characters For Search: enter one more 1`] = `
+<div
+  aria-busy={false}
+  className="s25SearchResults"
+  onScroll={[Function]}
+  style={
+    Object {
+      "maxHeight": "120px",
+    }
+  }
+>
+  <div
+    className="s25SearchResultsMinimumError s25SearchResultsMessage"
+  >
+    Please enter 1 more character
+  </div>
+</div>
+`;
+
+exports[`Minimum Characters For Search: enter two more 1`] = `
+<div
+  aria-busy={false}
+  className="s25SearchResults"
+  onScroll={[Function]}
+  style={
+    Object {
+      "maxHeight": "120px",
+    }
+  }
+>
+  <div
+    className="s25SearchResultsMinimumError s25SearchResultsMessage"
+  >
+    Please enter 2 more characters
+  </div>
+</div>
+`;
+
+exports[`Minimum Characters For Search: results 1`] = `
+<div
+  aria-busy={false}
+  className="s25SearchResults"
+  onScroll={[Function]}
+  style={
+    Object {
+      "maxHeight": "120px",
+    }
+  }
+>
+  <div
+    aria-activedescendant="result-undefined"
+    className="s25Options"
+    id="listbox"
+    role="listbox"
+  >
+    <div
+      aria-label="item-1"
+      aria-posinset={1}
+      aria-selected={false}
+      className="s25Item"
+      id="result-0"
+      key="0"
+      onMouseDown={[Function]}
+      onMouseMove={[Function]}
+      onMouseUp={[Function]}
+      role="option"
+    >
+      item-1
+    </div>
+    <div
+      aria-label="item-2"
+      aria-posinset={2}
+      aria-selected={false}
+      className="s25Item"
+      id="result-1"
+      key="1"
+      onMouseDown={[Function]}
+      onMouseMove={[Function]}
+      onMouseUp={[Function]}
+      role="option"
+    >
+      item-2
+    </div>
+  </div>
+</div>
+`;
+
+exports[`No Results 1`] = `
+<div
+  aria-busy={false}
+  className="s25SearchResults"
+  onScroll={[Function]}
+  style={
+    Object {
+      "maxHeight": "120px",
+    }
+  }
+>
+  <div
+    className="s25NoSearchResults"
+  >
+    No results available
+  </div>
+</div>
+`;

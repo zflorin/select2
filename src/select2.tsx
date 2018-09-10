@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CSSProperties} from "react";
+import {CSSProperties, ReactChild} from "react";
 import * as style from "./select2.scss";
 import * as classNames from "classnames/bind";
 import * as announce from "./announce";
@@ -7,6 +7,7 @@ import * as util from "./util";
 import {Key, scope, uuid} from "./util";
 import {Dropdown} from "./dropdown";
 import {Dictionary, dictionary} from "./dictionary";
+import {Results} from "./results"
 
 let cn = classNames.bind(style);
 
@@ -56,6 +57,7 @@ interface MultiSelectState<T> {
 
     search: string;
     searchPage: number;
+
     searchResults: T[] | undefined;
     searchResultDomIds: number[] | undefined;
     searchResultsLoading: boolean;
@@ -82,10 +84,8 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     searchRef: React.RefObject<HTMLInputElement>;
     controlRef: React.RefObject<any>;
     valuesRef: React.RefObject<HTMLDivElement>;
-    dropdownRef: React.RefObject<HTMLDivElement>;
-    loadingMoreResults: React.RefObject<HTMLDivElement>;
-    lastMouseClientX: number;
-    lastMouseClientY: number;
+    //dropdownRef: React.RefObject<HTMLDivElement>;
+    //loadingMoreResults: React.RefObject<HTMLDivElement>;
 
     searchFocussedPragmatically: boolean;
     toggleWasOpen: boolean;
@@ -96,10 +96,10 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         super(props);
         this.id = "s2-multi-" + uuid();
         this.controlRef = React.createRef();
-        this.dropdownRef = React.createRef();
+        //this.dropdownRef = React.createRef();
         this.valuesRef = React.createRef();
         this.searchRef = React.createRef();
-        this.loadingMoreResults = React.createRef();
+        //this.loadingMoreResults = React.createRef();
         this.searchFocussedPragmatically = false;
 
         this.queryDebounced=util.debounce(this.props.quietMillis, this.query, this);
@@ -127,52 +127,6 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     componentWillMount() {
         announce.initialize();
-    }
-
-    componentDidUpdate(prevProps: MultiSelectProps<T>, prevState: MultiSelectState<T>) {
-
-        if (prevState.activeSearchResult != this.state.activeSearchResult) {
-
-            if (this.state.activeSearchResult >= 0
-                && this.state.searchResults.length > 0
-                && this.state.activeSearchResult == (this.state.searchResults.length - 1)
-                && this.state.showLoadMoreResults) {
-                // last result is selected and load more is shown, make sure it is scrolled into view
-
-                const drop = this.dropdownRef.current;
-                const el = this.loadingMoreResults.current;
-
-                drop.scrollTop = el.offsetTop + el.offsetHeight - drop.clientHeight;
-
-
-                //console.log("scrolling to see load more");//, setting scrolltop", drop, el, el.offsetTop - drop.clientHeight);
-
-
-            } else if (this.state.activeSearchResult >= 0) {
-                // make sure it is scrolled into view
-                const id = this.getSearchResultDomId(this.state.activeSearchResult);
-                const el = document.getElementById(id);
-                if (el != null) {
-                    const drop = this.dropdownRef.current;
-
-                    const c = drop.getBoundingClientRect();
-                    const e = el.getBoundingClientRect();
-
-                    if (e.top < c.top && e.bottom <= c.bottom) {
-                        const delta = c.top - e.top;
-                        drop.scrollTop = drop.scrollTop - delta;
-                        //console.log("scrolling into view top");
-                    }
-
-                    if (e.top >= c.top && e.bottom > c.bottom) {
-                        const delta = e.bottom - c.bottom;
-                        drop.scrollTop = drop.scrollTop + delta;
-                        //console.log("scrolling into view bottom");
-                    }
-
-                }
-            }
-        }
     }
 
     render() {
@@ -299,50 +253,28 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                 {state.open &&
                 <Dropdown control={this.controlRef.current} className={style.s25Dropdown}>
 
-                    <div className={style.s25Body + " " + style.s25SearchResults}
-                         style={{maxHeight: "120px"}}
-                         ref={this.dropdownRef}
-                         aria-busy={state.searchResultsLoading}
-                         id={dropdownId}
-                         onScroll={this.onDropdownScroll}>
-                        {state.searchResults && state.searchResults.length > 0 &&
-                        (
-                            <div className={style.s25Options}
-                                 role="listbox"
-                                 aria-activedescendant={this.getSearchResultDomId(state.activeSearchResult)}>
-                                {
-                                    state.searchResults.map((item, i) => {
-                                        const className = cn(style.s25Item, {s25Active: state.activeSearchResult == i});
-                                        return (
-                                            <div key={i}
-                                                 className={className}
-                                                 id={this.getSearchResultDomId(i)}
-                                                 onMouseDown={this.onMouseDownSearchResult(i)}
-                                                 onMouseMove={this.onMouseEnterSearchResult(i)}
-                                                 onMouseUp={this.onSearchResultClicked(i)}
-                                                 role="option"
-                                                 aria-posinset={i+1}
-                                                 aria-selected={state.activeSearchResult === i}
-                                            >
-                                                {this.getResultContent(item)}
-                                            </div>);
-                                    })
-                                }
-                            </div>
+                    <div className={style.s25Body}>
 
-                        )}
-                        {state.showNoSearchResultsFound &&
-                        <div className={style.s25NoSearchResults}>{dict.noSearchResults()}</div>
-                        }
-                        {(state.searchResultsLoading || state.showLoadMoreResults) &&
-                        <div ref={this.loadingMoreResults}
-                             className={cn(style.s25SearchResultsLoading, style.s25SearchResultsMessage)}>{dict.searchResultsLoading()}</div>
-                        }
-                        {(state.showMinimumCharactersError) &&
-                        <div className={cn(style.s25SearchResultsMinimumError, style.s25SearchResultsMessage)}>
-                            {dict.minimumCharactersMessage(state.search.length, props.minimumCharacters)}
-                        </div>
-                        }
+                        <Results
+                            search={state.search}
+                            minimumCharacters={props.minimumCharacters}
+                            searchResults={state.searchResults}
+                            searchResultDomId={this.getSearchResultDomId}
+                            searchHasMoreResults={state.searchHasMoreResults}
+                            activeSearchResult={state.activeSearchResult}
+                            searchResultsLoading={state.searchResultsLoading}
+                            showNoSearchResultsFound={state.showNoSearchResultsFound}
+                            showLoadMoreResults={state.showLoadMoreResults}
+                            showMinimumCharactersError={state.showMinimumCharactersError}
+                            listboxDomId={dropdownId}
+                            itemLabel={this.getItemLabel}
+                            resultContent={this.getResultContent}
+                            dictionary={dict}
+                            onLoadMore={this.onLoadMore}
+                            onActivateSearchResult={this.setActiveSearchResult}
+                            onSelectSearchResult={this.selectSearchResult}
+                        />
+
                     </div>
                 </Dropdown>
                 }
@@ -359,17 +291,17 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         }
     }
 
-    getValueContent(item: T) {
+    getValueContent(item: T): ReactChild {
         if (this.props.valueContent === undefined) {
             return this.getItemLabel(item);
         } else if (typeof this.props.valueContent === "function") {
             return this.props.valueContent(item);
         } else {
-            return item[this.props.valueContent];
+            return "" + item[this.props.valueContent];
         }
     }
 
-    getItemLabel(item: T): string {
+    getItemLabel = (item: T): string => {
         if (typeof this.props.itemLabel === "function") {
             return this.props.itemLabel(item);
         } else {
@@ -377,13 +309,13 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         }
     }
 
-    getResultContent(item: T) {
+    getResultContent = (item: T): React.ReactChild => {
         if (this.props.resultContent === undefined) {
             return this.getValueContent(item);
         } else if (typeof this.props.resultContent === "function") {
             return this.props.resultContent(item);
         } else {
-            return item[this.props.resultContent];
+            return "" + item[this.props.resultContent];
         }
     }
 
@@ -490,32 +422,9 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     };
 
 
-    onSearchResultClicked = (index: number) => (event: React.MouseEvent) => {
-        this.selectSearchResult(index);
-        event.preventDefault();
-    };
-
-    onMouseDownSearchResult = (index: number) => (event: React.MouseEvent) => {
-        if (this.state.activeSearchResult != index) {
-            this.setActiveSearchResult(index);
-        }
-        event.preventDefault();
-    };
-
-    onMouseEnterSearchResult = (index: number) => (event: React.MouseEvent) => {
-        if (this.lastMouseClientX == event.clientX && this.lastMouseClientY == event.clientY) {
-            // the mouse did not move, the dropdown was scrolled instead, we do not change selected element because
-            // it will be scrolled into view and mess with the scrolling of the results in the dropdown
-            return;
-        }
 
 
-        this.lastMouseClientX = event.clientX;
-        this.lastMouseClientY = event.clientY;
-        if (this.state.activeSearchResult != index) {
-            this.setActiveSearchResult(index);
-        }
-    };
+
 
     setActiveSearchResult = (index: number) => {
         this.setState({activeSearchResult: index});
@@ -594,7 +503,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
 
-    selectSearchResult(index: number) {
+    selectSearchResult = (index: number) => {
         const selected = this.state.searchResults[index];
         const values = this.state.values.slice();
         values.push(selected);
@@ -712,7 +621,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         this.search(value, true);
     };
 
-    async onLoadMore() {
+    onLoadMore = async () => {
         if (this.state.searchResultsLoading) {
             return;
         }
@@ -756,19 +665,6 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     }
 
-    onDropdownScroll = (event: React.UIEvent) => {
-        if (!this.state.showLoadMoreResults) {
-            return;
-        }
-        const more = this.loadingMoreResults.current;
-        const drop = this.dropdownRef.current;
-
-        const visibility = util.calculateVerticalVisibility(drop, more);
-        if (visibility !== "hidden") {
-            this.onLoadMore();
-        }
-
-    };
 
 
     onRemove = (index: number) => (event: React.MouseEvent) => {
@@ -821,11 +717,12 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         return (index === undefined || index < 0) ? undefined : this.id + "-value-" + index;
     }
 
-    getSearchResultDomId(index: number) {
+    getSearchResultDomId = (index: number) => {
         return (index === undefined || index < 0) ?
             undefined :
             this.id + "-result-" + this.state.searchResultDomIds[index];
     }
+
 
     onToggleMouseDownCapture = (event: React.MouseEvent) => {
         this.toggleWasOpen = this.state.open;
