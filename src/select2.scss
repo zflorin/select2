@@ -43,7 +43,7 @@ content: "×";
 	}
 }
 
-.s25-multi div {
+.s25-multi .s25-search-container {
   max-width: 100%;
 }
 
@@ -162,6 +162,7 @@ content: "×";
 
 .s25-control .s25-body {
   margin: 3px;
+  margin-bottom: 0;
   margin-right: 60px;
   width: calc(100% - 60px);
 }
