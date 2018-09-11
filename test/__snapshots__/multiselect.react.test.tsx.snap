@@ -1,255 +1,774 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Initial Render 1`] = `
-<div
-  className="s25Multi s25Control"
-  id="s2-multi-0"
+<MultiSelect
+  dictionary="en_us"
+  itemId="id"
+  itemLabel="text"
+  minimumCharacters={0}
+  name="test"
+  openOnSearchFocus={true}
+  query={[Function]}
+  quietMillis={-1}
+  searchLabel="Search Label"
+  values={Array []}
+  valuesLabel="Values Label"
 >
   <div
-    className="s25Body"
+    className="s25Multi s25Control"
+    id="s2-multi-0"
+    onClick={[Function]}
+    onMouseDown={[Function]}
   >
-    <button
-      aria-disabled={true}
-      className="s25Remove s25Offscreen"
-      disabled={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      title="Remove selected values"
+    <div
+      className="s25Body"
     >
-      <span>
-        <IconRemove
+      <button
+        aria-disabled={true}
+        className="s25Remove s25Offscreen"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        title="Remove selected values"
+      >
+        <span>
+          <IconRemove
+            height={20}
+            width={20}
+          >
+            <svg
+              focusable="false"
+              height={20}
+              tabIndex={-1}
+              viewBox="0 0 20 20"
+              width={20}
+            >
+              <path
+                d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+              />
+            </svg>
+          </IconRemove>
+        </span>
+      </button>
+      <label
+        className="s25Offscreen"
+        htmlFor="s2-multi-0-search"
+      >
+        Search Label
+      </label>
+      <AutosizeInput
+        aria-autocomplete="none"
+        aria-busy={false}
+        aria-controls="s2-multi-0-dropdown"
+        aria-expanded={false}
+        aria-haspopup="true"
+        aria-owns="s2-multi-0-dropdown"
+        id="s2-multi-0-search"
+        injectStyles={true}
+        inputClassName="s25Search"
+        inputRef={[Function]}
+        inputStyle={Object {}}
+        minWidth={1}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="combobox"
+        value=""
+      >
+        <div
+          style={
+            Object {
+              "display": "inline-block",
+            }
+          }
+        >
+          <input
+            aria-autocomplete="none"
+            aria-busy={false}
+            aria-controls="s2-multi-0-dropdown"
+            aria-expanded={false}
+            aria-haspopup="true"
+            aria-owns="s2-multi-0-dropdown"
+            className="s25Search"
+            id="s2-multi-0-search"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="combobox"
+            style={
+              Object {
+                "boxSizing": "content-box",
+                "width": "2px",
+              }
+            }
+            value=""
+          />
+          <div
+            style={
+              Object {
+                "height": 0,
+                "left": 0,
+                "overflow": "scroll",
+                "position": "absolute",
+                "top": 0,
+                "visibility": "hidden",
+                "whiteSpace": "pre",
+              }
+            }
+          />
+        </div>
+      </AutosizeInput>
+      <div
+        aria-hidden={true}
+        className="s25Toggle"
+        onClick={[Function]}
+        onMouseDownCapture={[Function]}
+      >
+        <IconToggle
           height={20}
           width={20}
-        />
-      </span>
-    </button>
-    <label
-      className="s25Offscreen"
-      htmlFor="s2-multi-0-search"
-    >
-      Search Label
-    </label>
-    <input
-      aria-autocomplete="none"
-      aria-busy={false}
-      aria-controls="s2-multi-0-dropdown"
-      aria-expanded={false}
-      aria-haspopup="true"
-      aria-owns="s2-multi-0-dropdown"
-      className="s25Search"
-      id="s2-multi-0-search"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      role="combobox"
-      type="text"
-      value=""
-    />
-    <div
-      aria-hidden={true}
-      className="s25Toggle"
-      onClick={[Function]}
-      onMouseDownCapture={[Function]}
-    >
-      <IconToggle
-        height={20}
-        width={20}
-      />
+        >
+          <svg
+            focusable="false"
+            height={20}
+            tabIndex={-1}
+            viewBox="0 0 20 20"
+            width={20}
+          >
+            <path
+              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+            />
+          </svg>
+        </IconToggle>
+      </div>
     </div>
   </div>
-</div>
+</MultiSelect>
 `;
 
 exports[`No Results 1`] = `
-<div
-  className="s25Multi s25Control s25Open"
-  id="s2-multi-1"
+<MultiSelect
+  dictionary="en_us"
+  itemId="id"
+  itemLabel="text"
+  minimumCharacters={0}
+  name="test"
+  openOnSearchFocus={true}
+  query={[Function]}
+  quietMillis={-1}
+  searchLabel="Search Label"
+  values={Array []}
+  valuesLabel="Values Label"
 >
   <div
-    className="s25Body"
-  >
-    <button
-      aria-disabled={true}
-      className="s25Remove s25Offscreen"
-      disabled={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      title="Remove selected values"
-    >
-      <span>
-        <IconRemove
-          height={20}
-          width={20}
-        />
-      </span>
-    </button>
-    <label
-      className="s25Offscreen"
-      htmlFor="s2-multi-1-search"
-    >
-      Search Label
-    </label>
-    <input
-      aria-autocomplete="none"
-      aria-busy={false}
-      aria-controls="s2-multi-1-dropdown"
-      aria-expanded={true}
-      aria-haspopup="true"
-      aria-owns="s2-multi-1-dropdown"
-      className="s25Search"
-      id="s2-multi-1-search"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      role="combobox"
-      type="text"
-      value="abc"
-    />
-    <div
-      aria-hidden={true}
-      className="s25Toggle"
-      onClick={[Function]}
-      onMouseDownCapture={[Function]}
-    >
-      <IconToggle
-        height={20}
-        width={20}
-      />
-    </div>
-  </div>
-  <Dropdown
-    className="s25Dropdown"
-    control={null}
+    className="s25Multi s25Control s25SearchResultsLoading s25Open"
+    id="s2-multi-1"
+    onClick={[Function]}
+    onMouseDown={[Function]}
   >
     <div
       className="s25Body"
     >
-      <Results
-        activeSearchResult={-1}
-        dictionary={AmericanEnglishDictionary {}}
-        itemLabel={[Function]}
-        listboxDomId="s2-multi-1-dropdown"
-        minimumCharacters={0}
-        onActivateSearchResult={[Function]}
-        onLoadMore={[Function]}
-        onSelectSearchResult={[Function]}
-        resultContent={[Function]}
-        search="abc"
-        searchHasMoreResults={false}
-        searchResultDomId={[Function]}
-        searchResults={Array []}
-        searchResultsLoading={false}
-        showLoadMoreResults={false}
-        showMinimumCharactersError={false}
-        showNoSearchResultsFound={true}
-      />
+      <button
+        aria-disabled={true}
+        className="s25Remove s25Offscreen"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        title="Remove selected values"
+      >
+        <span>
+          <IconRemove
+            height={20}
+            width={20}
+          >
+            <svg
+              focusable="false"
+              height={20}
+              tabIndex={-1}
+              viewBox="0 0 20 20"
+              width={20}
+            >
+              <path
+                d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+              />
+            </svg>
+          </IconRemove>
+        </span>
+      </button>
+      <label
+        className="s25Offscreen"
+        htmlFor="s2-multi-1-search"
+      >
+        Search Label
+      </label>
+      <AutosizeInput
+        aria-autocomplete="none"
+        aria-busy={true}
+        aria-controls="s2-multi-1-dropdown"
+        aria-expanded={true}
+        aria-haspopup="true"
+        aria-owns="s2-multi-1-dropdown"
+        id="s2-multi-1-search"
+        injectStyles={true}
+        inputClassName="s25Search"
+        inputRef={[Function]}
+        inputStyle={Object {}}
+        minWidth={1}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="combobox"
+        value="abc"
+      >
+        <div
+          style={
+            Object {
+              "display": "inline-block",
+            }
+          }
+        >
+          <input
+            aria-autocomplete="none"
+            aria-busy={true}
+            aria-controls="s2-multi-1-dropdown"
+            aria-expanded={true}
+            aria-haspopup="true"
+            aria-owns="s2-multi-1-dropdown"
+            className="s25Search"
+            id="s2-multi-1-search"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="combobox"
+            style={
+              Object {
+                "boxSizing": "content-box",
+                "width": "2px",
+              }
+            }
+            value="abc"
+          />
+          <div
+            style={
+              Object {
+                "height": 0,
+                "left": 0,
+                "overflow": "scroll",
+                "position": "absolute",
+                "top": 0,
+                "visibility": "hidden",
+                "whiteSpace": "pre",
+              }
+            }
+          >
+            abc
+          </div>
+        </div>
+      </AutosizeInput>
+      <div
+        aria-hidden={true}
+        className="s25Toggle"
+        onClick={[Function]}
+        onMouseDownCapture={[Function]}
+      >
+        <IconToggle
+          height={20}
+          width={20}
+        >
+          <svg
+            focusable="false"
+            height={20}
+            tabIndex={-1}
+            viewBox="0 0 20 20"
+            width={20}
+          >
+            <path
+              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+            />
+          </svg>
+        </IconToggle>
+      </div>
     </div>
-  </Dropdown>
-</div>
+    <Dropdown
+      className="s25Dropdown"
+      control={
+        <div
+          class="s25Multi s25Control s25Open"
+          id="s2-multi-1"
+        >
+          <div
+            class="s25Body"
+          >
+            <button
+              aria-disabled="true"
+              class="s25Remove s25Offscreen"
+              disabled=""
+              title="Remove selected values"
+            >
+              <span>
+                <svg
+                  focusable="false"
+                  height="20"
+                  tabindex="-1"
+                  viewBox="0 0 20 20"
+                  width="20"
+                >
+                  <path
+                    d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                  />
+                </svg>
+              </span>
+            </button>
+            <label
+              class="s25Offscreen"
+              for="s2-multi-1-search"
+            >
+              Search Label
+            </label>
+            <div
+              style="display: inline-block;"
+            >
+              <input
+                aria-autocomplete="none"
+                aria-busy="false"
+                aria-controls="s2-multi-1-dropdown"
+                aria-expanded="true"
+                aria-haspopup="true"
+                aria-owns="s2-multi-1-dropdown"
+                class="s25Search"
+                id="s2-multi-1-search"
+                role="combobox"
+                style="box-sizing: content-box; width: 2px;"
+                value="abc"
+              />
+              <div
+                style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+              >
+                abc
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="s25Toggle"
+            >
+              <svg
+                focusable="false"
+                height="20"
+                tabindex="-1"
+                viewBox="0 0 20 20"
+                width="20"
+              >
+                <path
+                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <Portal
+        containerInfo={
+          <div
+            class="s25Dropdown"
+            style="
+            top: 0px;
+            left: 0px;
+            width: 0px;
+        "
+          >
+            <div
+              class="s25Body"
+            >
+              <div
+                aria-busy="false"
+                class="s25SearchResults"
+                style="max-height: 120px;"
+              >
+                <div
+                  class="s25NoSearchResults"
+                >
+                  No results available
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      >
+        <div
+          className="s25Body"
+        >
+          <Results
+            activeSearchResult={-1}
+            dictionary={AmericanEnglishDictionary {}}
+            itemLabel={[Function]}
+            listboxDomId="s2-multi-1-dropdown"
+            minimumCharacters={0}
+            onActivateSearchResult={[Function]}
+            onLoadMore={[Function]}
+            onSelectSearchResult={[Function]}
+            resultContent={[Function]}
+            search="abc"
+            searchHasMoreResults={false}
+            searchResultDomId={[Function]}
+            searchResultsLoading={true}
+            showLoadMoreResults={false}
+            showMinimumCharactersError={false}
+            showNoSearchResultsFound={false}
+          >
+            <div
+              aria-busy={true}
+              className="s25SearchResults"
+              onScroll={[Function]}
+              style={
+                Object {
+                  "maxHeight": "120px",
+                }
+              }
+            >
+              <div
+                className="s25SearchResultsLoading s25SearchResultsMessage"
+              >
+                Loading...
+              </div>
+            </div>
+          </Results>
+        </div>
+      </Portal>
+    </Dropdown>
+  </div>
+</MultiSelect>
 `;
 
 exports[`Some Results 1`] = `
-<div
-  className="s25Multi s25Control s25Open"
-  id="s2-multi-2"
+<MultiSelect
+  dictionary="en_us"
+  itemId="id"
+  itemLabel="text"
+  minimumCharacters={0}
+  name="test"
+  openOnSearchFocus={true}
+  query={[Function]}
+  quietMillis={-1}
+  searchLabel="Search Label"
+  values={Array []}
+  valuesLabel="Values Label"
 >
   <div
-    className="s25Body"
-  >
-    <button
-      aria-disabled={true}
-      className="s25Remove s25Offscreen"
-      disabled={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      title="Remove selected values"
-    >
-      <span>
-        <IconRemove
-          height={20}
-          width={20}
-        />
-      </span>
-    </button>
-    <label
-      className="s25Offscreen"
-      htmlFor="s2-multi-2-search"
-    >
-      Search Label
-    </label>
-    <input
-      aria-activedescendant="s2-multi-2-result-3"
-      aria-autocomplete="none"
-      aria-busy={false}
-      aria-controls="s2-multi-2-dropdown"
-      aria-expanded={true}
-      aria-haspopup="true"
-      aria-owns="s2-multi-2-dropdown"
-      className="s25Search"
-      id="s2-multi-2-search"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      role="combobox"
-      type="text"
-      value="abc"
-    />
-    <div
-      aria-hidden={true}
-      className="s25Toggle"
-      onClick={[Function]}
-      onMouseDownCapture={[Function]}
-    >
-      <IconToggle
-        height={20}
-        width={20}
-      />
-    </div>
-  </div>
-  <Dropdown
-    className="s25Dropdown"
-    control={null}
+    className="s25Multi s25Control s25SearchResultsLoading s25Open"
+    id="s2-multi-2"
+    onClick={[Function]}
+    onMouseDown={[Function]}
   >
     <div
       className="s25Body"
     >
-      <Results
-        activeSearchResult={0}
-        dictionary={AmericanEnglishDictionary {}}
-        itemLabel={[Function]}
-        listboxDomId="s2-multi-2-dropdown"
-        minimumCharacters={0}
-        onActivateSearchResult={[Function]}
-        onLoadMore={[Function]}
-        onSelectSearchResult={[Function]}
-        resultContent={[Function]}
-        search="abc"
-        searchHasMoreResults={true}
-        searchResultDomId={[Function]}
-        searchResults={
-          Array [
+      <button
+        aria-disabled={true}
+        className="s25Remove s25Offscreen"
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        title="Remove selected values"
+      >
+        <span>
+          <IconRemove
+            height={20}
+            width={20}
+          >
+            <svg
+              focusable="false"
+              height={20}
+              tabIndex={-1}
+              viewBox="0 0 20 20"
+              width={20}
+            >
+              <path
+                d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+              />
+            </svg>
+          </IconRemove>
+        </span>
+      </button>
+      <label
+        className="s25Offscreen"
+        htmlFor="s2-multi-2-search"
+      >
+        Search Label
+      </label>
+      <AutosizeInput
+        aria-autocomplete="none"
+        aria-busy={true}
+        aria-controls="s2-multi-2-dropdown"
+        aria-expanded={true}
+        aria-haspopup="true"
+        aria-owns="s2-multi-2-dropdown"
+        id="s2-multi-2-search"
+        injectStyles={true}
+        inputClassName="s25Search"
+        inputRef={[Function]}
+        inputStyle={Object {}}
+        minWidth={1}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="combobox"
+        value="abc"
+      >
+        <div
+          style={
             Object {
-              "id": 0,
-              "text": "abc-0",
-            },
-            Object {
-              "id": 1,
-              "text": "abc-1",
-            },
-          ]
-        }
-        searchResultsLoading={false}
-        showLoadMoreResults={true}
-        showMinimumCharactersError={false}
-        showNoSearchResultsFound={false}
-      />
+              "display": "inline-block",
+            }
+          }
+        >
+          <input
+            aria-autocomplete="none"
+            aria-busy={true}
+            aria-controls="s2-multi-2-dropdown"
+            aria-expanded={true}
+            aria-haspopup="true"
+            aria-owns="s2-multi-2-dropdown"
+            className="s25Search"
+            id="s2-multi-2-search"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="combobox"
+            style={
+              Object {
+                "boxSizing": "content-box",
+                "width": "2px",
+              }
+            }
+            value="abc"
+          />
+          <div
+            style={
+              Object {
+                "height": 0,
+                "left": 0,
+                "overflow": "scroll",
+                "position": "absolute",
+                "top": 0,
+                "visibility": "hidden",
+                "whiteSpace": "pre",
+              }
+            }
+          >
+            abc
+          </div>
+        </div>
+      </AutosizeInput>
+      <div
+        aria-hidden={true}
+        className="s25Toggle"
+        onClick={[Function]}
+        onMouseDownCapture={[Function]}
+      >
+        <IconToggle
+          height={20}
+          width={20}
+        >
+          <svg
+            focusable="false"
+            height={20}
+            tabIndex={-1}
+            viewBox="0 0 20 20"
+            width={20}
+          >
+            <path
+              d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+            />
+          </svg>
+        </IconToggle>
+      </div>
     </div>
-  </Dropdown>
-</div>
+    <Dropdown
+      className="s25Dropdown"
+      control={
+        <div
+          class="s25Multi s25Control s25Open"
+          id="s2-multi-2"
+        >
+          <div
+            class="s25Body"
+          >
+            <button
+              aria-disabled="true"
+              class="s25Remove s25Offscreen"
+              disabled=""
+              title="Remove selected values"
+            >
+              <span>
+                <svg
+                  focusable="false"
+                  height="20"
+                  tabindex="-1"
+                  viewBox="0 0 20 20"
+                  width="20"
+                >
+                  <path
+                    d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                  />
+                </svg>
+              </span>
+            </button>
+            <label
+              class="s25Offscreen"
+              for="s2-multi-2-search"
+            >
+              Search Label
+            </label>
+            <div
+              style="display: inline-block;"
+            >
+              <input
+                aria-activedescendant="s2-multi-2-result-3"
+                aria-autocomplete="none"
+                aria-busy="false"
+                aria-controls="s2-multi-2-dropdown"
+                aria-expanded="true"
+                aria-haspopup="true"
+                aria-owns="s2-multi-2-dropdown"
+                class="s25Search"
+                id="s2-multi-2-search"
+                role="combobox"
+                style="box-sizing: content-box; width: 2px;"
+                value="abc"
+              />
+              <div
+                style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+              >
+                abc
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="s25Toggle"
+            >
+              <svg
+                focusable="false"
+                height="20"
+                tabindex="-1"
+                viewBox="0 0 20 20"
+                width="20"
+              >
+                <path
+                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <Portal
+        containerInfo={
+          <div
+            class="s25Dropdown"
+            style="
+            top: 0px;
+            left: 0px;
+            width: 0px;
+        "
+          >
+            <div
+              class="s25Body"
+            >
+              <div
+                aria-busy="false"
+                class="s25SearchResults"
+                style="max-height: 120px;"
+              >
+                <div
+                  aria-activedescendant="s2-multi-2-result-3"
+                  class="s25Options"
+                  id="s2-multi-2-dropdown"
+                  role="listbox"
+                >
+                  <div
+                    aria-label="abc-0"
+                    aria-posinset="1"
+                    aria-selected="true"
+                    class="s25Item s25Active"
+                    id="s2-multi-2-result-3"
+                    role="option"
+                  >
+                    abc-0
+                  </div>
+                  <div
+                    aria-label="abc-1"
+                    aria-posinset="2"
+                    aria-selected="false"
+                    class="s25Item"
+                    id="s2-multi-2-result-4"
+                    role="option"
+                  >
+                    abc-1
+                  </div>
+                </div>
+                <div
+                  class="s25SearchResultsLoading s25SearchResultsMessage"
+                >
+                  Loading...
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      >
+        <div
+          className="s25Body"
+        >
+          <Results
+            activeSearchResult={-1}
+            dictionary={AmericanEnglishDictionary {}}
+            itemLabel={[Function]}
+            listboxDomId="s2-multi-2-dropdown"
+            minimumCharacters={0}
+            onActivateSearchResult={[Function]}
+            onLoadMore={[Function]}
+            onSelectSearchResult={[Function]}
+            resultContent={[Function]}
+            search="abc"
+            searchHasMoreResults={false}
+            searchResultDomId={[Function]}
+            searchResultsLoading={true}
+            showLoadMoreResults={false}
+            showMinimumCharactersError={false}
+            showNoSearchResultsFound={false}
+          >
+            <div
+              aria-busy={true}
+              className="s25SearchResults"
+              onScroll={[Function]}
+              style={
+                Object {
+                  "maxHeight": "120px",
+                }
+              }
+            >
+              <div
+                className="s25SearchResultsLoading s25SearchResultsMessage"
+              >
+                Loading...
+              </div>
+            </div>
+          </Results>
+        </div>
+      </Portal>
+    </Dropdown>
+  </div>
+</MultiSelect>
 `;

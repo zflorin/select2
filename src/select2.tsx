@@ -8,6 +8,7 @@ import {Key, scope, uuid} from "./util";
 import {Dropdown} from "./dropdown";
 import {Dictionary, dictionary} from "./dictionary";
 import {Results} from "./results"
+import AutosizeInput from 'react-input-autosize';
 
 let cn = classNames.bind(style);
 
@@ -81,16 +82,26 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     id: string;
 
-    searchRef: React.RefObject<HTMLInputElement>;
+    //searchRef: React.RefObject<HTMLInputElement>;
+    searchRef: HTMLInputElement;
+
+
+
     controlRef: React.RefObject<any>;
     valuesRef: React.RefObject<HTMLDivElement>;
     //dropdownRef: React.RefObject<HTMLDivElement>;
     //loadingMoreResults: React.RefObject<HTMLDivElement>;
 
     searchFocussedPragmatically: boolean;
+    valuesFocussedPragmatically: boolean;
     toggleWasOpen: boolean;
 
     queryDebounced: (search:string, page:number)=>void;
+
+    setSearchRef = (el: HTMLInputElement) => {
+        this.searchRef = el;
+    }
+
 
     constructor(props: MultiSelectProps<T>) {
         super(props);
@@ -98,7 +109,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         this.controlRef = React.createRef();
         //this.dropdownRef = React.createRef();
         this.valuesRef = React.createRef();
-        this.searchRef = React.createRef();
+
         //this.loadingMoreResults = React.createRef();
         this.searchFocussedPragmatically = false;
 
@@ -139,7 +150,10 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         const searchLabel = typeof(props.searchLabel) === "function" ? props.searchLabel() : props.searchLabel;
 
         return (
-            <div ref={this.controlRef} id={this.id} style={props.style} className={
+            <div ref={this.controlRef} id={this.id} style={props.style}
+                 onMouseDown={this.onControlMouseDown}
+                 onClick={this.onControlClicked}
+                 className={
                 cn(style.s25Multi, style.s25Control, {
                     s25SearchResultsLoading: state.searchResultsLoading,
                     s25Focused: state.focused,
@@ -219,23 +233,24 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                     <label htmlFor={searchId} className={style.s25Offscreen}>
                         {searchLabel}
                     </label>
-                    <input ref={this.searchRef}
-                           className={style.s25Search}
-                           type="text"
-                           id={searchId}
-                           value={state.search}
-                           onChange={this.onSearchChanged}
-                           onKeyDown={this.onSearchKeyDown}
-                           onFocus={this.onSearchFocus}
-                           onBlur={this.onSearchBlur}
-                           role="combobox"
-                           aria-autocomplete="none"
-                           aria-haspopup="true"
-                           aria-owns={dropdownId}
-                           aria-controls={dropdownId}
-                           aria-expanded={state.open}
-                           aria-activedescendant={this.getSearchResultDomId(state.activeSearchResult)}
-                           aria-busy={state.searchResultsLoading}
+
+                    <AutosizeInput inputRef={this.setSearchRef}
+                                   inputClassName={style.s25Search}
+                                   inputStyle={{}}
+                                   id={searchId}
+                                   value={state.search}
+                                   onChange={this.onSearchChanged}
+                                   onKeyDown={this.onSearchKeyDown}
+                                   onFocus={this.onSearchFocus}
+                                   onBlur={this.onSearchBlur}
+                                   role="combobox"
+                                   aria-autocomplete="none"
+                                   aria-haspopup="true"
+                                   aria-owns={dropdownId}
+                                   aria-controls={dropdownId}
+                                   aria-expanded={state.open}
+                                   aria-activedescendant={this.getSearchResultDomId(state.activeSearchResult)}
+                                   aria-busy={state.searchResultsLoading}
                     />
 
                     <div className={style.s25Toggle}
@@ -281,6 +296,15 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
             </div>
         )
+    }
+
+    onControlMouseDown = (event: React.MouseEvent) => {
+        // abort mouse down handling, this will prevent focus from flickering because search will not get blurred at this point
+        event.preventDefault();
+    }
+
+    onControlClicked = (event: React.MouseEvent) => {
+        this.searchRef.focus();
     }
 
     getItemId(item: T): string {
@@ -344,25 +368,39 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         for (let i = 0; i < selected.length; i++) {
             values.splice(selected[i] - i, 1);
         }
-        this.setState({values: values, selectedValues: [], activeValue: values.length > 0 ? 0 : -1});
+        this.setState({
+            values: values,
+            selectedValues: [],
+            activeValue: values.length > 0 ? 0 : -1
+        });
         if (values.length > 0) {
+            this.valuesFocussedPragmatically = true;
             this.valuesRef.current.focus();
         } else {
             this.focusSearch();
         }
+
+        event.stopPropagation(); // do not propagate to body
     };
 
     onValueClicked = (index: number) => (event: React.MouseEvent) => {
         this.toggleSelectedValue(index);
+        event.stopPropagation(); // do not propagate to body listener
+        //this.valuesFocussedPragmatically=true;
+        this.valuesRef.current.focus();
     };
 
     onValuesFocus = (event: React.FocusEvent) => {
-        let index = 0;
-        if (this.state.selectedValues.length > 0) {
-            index = this.state.selectedValues[0];
-        }
-        this.setActiveValue(index);
         this.setState({focused: true});
+
+        if (!this.valuesFocussedPragmatically) {
+            let index = 0;
+            if (this.state.selectedValues.length > 0) {
+                index = this.state.selectedValues[0];
+            }
+            this.setActiveValue(index);
+        }
+        this.valuesFocussedPragmatically = false;
     };
 
     onValuesBlur = (event: React.FocusEvent) => {
@@ -528,21 +566,30 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     focusSearch() {
         this.searchFocussedPragmatically = true;
-        this.searchRef.current.focus();
+        this.searchRef.focus();
     }
 
     onSearchFocus = (event: React.FocusEvent) => {
 
         this.setState({focused: true});
-        if (this.props.openOnSearchFocus && !this.searchFocussedPragmatically) {
-            this.open();
+        if (!this.searchFocussedPragmatically) {
+            if (this.props.openOnSearchFocus) {
+                this.open();
+            }
         }
 
         this.searchFocussedPragmatically = false;
     };
 
     onSearchBlur = (event: React.FocusEvent) => {
-        this.setState({focused: false, open: false, search: ""});
+        this.setState({
+            focused: false,
+            open: false,
+            search: "",
+            searchResults: undefined,
+            searchResultDomIds: undefined,
+            activeSearchResult: -1
+        });
     };
 
 
@@ -627,7 +674,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         }
         const dict = dictionary(this.props.dictionary);
         const page = this.state.searchPage + 1;
-        const value = this.searchRef.current.value;
+        const value = this.searchRef.value;
         this.setState({
             searchResultsLoading: true,
         });
@@ -734,6 +781,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         } else {
             this.open();
         }
+
         this.focusSearch();
     }
 

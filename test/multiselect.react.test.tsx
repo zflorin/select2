@@ -1,6 +1,6 @@
 import * as React from "react";
 import {MultiSelect} from "../src/select2";
-import {ReactWrapper, shallow, ShallowWrapper} from "enzyme";
+import {ReactWrapper, shallow, ShallowWrapper, mount} from "enzyme";
 import toJson from "enzyme-to-json";
 import {makeQuery, waitForState} from "./utils";
 
@@ -14,7 +14,7 @@ async function search(component: ShallowWrapper | ReactWrapper, text: string) {
 
 
 test("Initial Render", () => {
-    let component = shallow(
+    let component = mount(
         <MultiSelect
             name="test"
             values={[]}
@@ -30,7 +30,7 @@ test("Initial Render", () => {
 });
 
 test("No Results", async () => {
-    let component = shallow(
+    let component = mount(
         <MultiSelect
             name="test"
             values={[]}
@@ -47,7 +47,7 @@ test("No Results", async () => {
 });
 
 test("Some Results", async () => {
-    let component = shallow(
+    let component = mount(
         <MultiSelect
             name="test"
             values={[]}
