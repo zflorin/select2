@@ -43,20 +43,31 @@ content: "×";
 	}
 }
 
+.s25-multi div {
+  max-width: 100%;
+}
+
 .s25-multi .s25-search {
-  flex-grow: 1;
+  max-width: 100%;
   min-width: 75px;
+  border: none;
 }
 
 .s25-multi .s25-toggle {
-  flex-grow: 0;
-  flex-shrink: 0;
   display: flex;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 30px;
 }
 
 .s25-multi .s25-remove {
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
   
 	&:disabled {
 		cursor: default;
@@ -146,7 +157,9 @@ content: "×";
 }
 
 .s25-control .s25-body {
-  margin-right: 35px;
+  margin: 3px;
+  margin-right: 60px;
+  width: calc(100% - 60px);
 }
 
 .s25-search:focus {
@@ -168,9 +181,6 @@ content: "×";
 }
 
 .s25-multi .s25-search {
-  margin: 3px;
-  padding: 0 5px;
-  border: $border;
   font-size: 100%;
   line-height: 24px;
 }
@@ -193,7 +203,8 @@ content: "×";
   border-radius: $border-radius;
   background-color: $color-item-bkg;
   color: $color-item-text;
-  margin: 3px 0 0 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
   transition: background .2s;
   
   	&:hover {
@@ -225,13 +236,10 @@ content: "×";
 .s25-multi .s25-body .s25-remove {
   border: none;
   border-radius: 0 $border-radius $border-radius 0;
+  margin: 0;
   padding: 0 5px;
   outline: none;
   background-color: #f1f1f1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
   transition: background .2s;
 	
 	span svg {
