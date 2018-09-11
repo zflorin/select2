@@ -235,6 +235,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                     </label>
 
                     <AutosizeInput inputRef={this.setSearchRef}
+                                   className={style.s25SearchContainer}
                                    inputClassName={style.s25Search}
                                    inputStyle={{}}
                                    id={searchId}
@@ -300,7 +301,10 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
     onControlMouseDown = (event: React.MouseEvent) => {
         // abort mouse down handling, this will prevent focus from flickering because search will not get blurred at this point
-        event.preventDefault();
+        // but do allow it inside the search control so users can change position of cursor, select text, etc
+        if (event.target !== this.searchRef) {
+            event.preventDefault();
+        }
     }
 
     onControlClicked = (event: React.MouseEvent) => {

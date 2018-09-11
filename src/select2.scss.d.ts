@@ -15,6 +15,7 @@ export const s25SearchResultsMessage: string;
 export const s25SearchResultsLoading: string;
 export const s25SearchResultsMinimumError: string;
 export const s25Open: string;
+export const s25SearchContainer: string;
 export const s25Focused: string;
 export const s25Content: string;
 export const s25Active: string;
