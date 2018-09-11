@@ -1,9 +1,10 @@
 
-$color-focus: #4D90FE;
-$color-item-bkg: #0073E6;
-$color-item-text: #fff;
+$focus-color: #4D90FE;
+$item-bkg-color: #0073E6;
+$item-text-color: #fff;
+$remove-bkg-color: lighten( $item-bkg-color, 50% );
 $border: 1px solid #ddd;
-$border-focus: 1px solid $color-focus;
+$border-focus: 1px solid $focus-color;
 $border-radius: 5px;
 $dropdown-padding: 8px 10px;
 
@@ -206,14 +207,14 @@ content: "×";
   position: relative;
   padding: 5px 12px 5px 18px;
   border-radius: $border-radius;
-  background-color: $color-item-bkg;
-  color: $color-item-text;
+  background-color: $item-bkg-color;
+  color: $item-text-color;
   margin-right: 3px;
   margin-bottom: 3px;
   transition: background .2s;
   
   	&:hover {
-	  	background-color: darken( $color-item-bkg, 5% );
+	  	background-color: darken( $item-bkg-color, 5% );
   	}
   
 	&.s25-active {
@@ -239,7 +240,7 @@ content: "×";
 }
 
 .s25-multi .s25-body .s25-remove {
-  border: none;
+  border: 1px solid $remove-bkg-color;
   border-radius: 0 $border-radius $border-radius 0;
   margin: 0;
   padding: 0 5px;
@@ -253,15 +254,15 @@ content: "×";
 	}
 	
 	&:not(:disabled) {
-		background-color: lighten( $color-item-bkg, 50% );
+		background-color: $remove-bkg-color;
 	
 		&:hover {
-		  	background-color: lighten( $color-item-bkg, 45% );
+		  	background-color: darken( $remove-bkg-color, 5% );
 		  	
 	  	}
 	  	
   		span svg {
-			fill: $color-item-bkg;
+			fill: $item-bkg-color;
 		}	
 	}	
 		
@@ -306,7 +307,7 @@ content: "×";
 	}
 
 	.s25-active {
-		background-color: lighten( $color-item-bkg, 50% );
+		background-color: lighten( $item-bkg-color, 50% );
 	}
 }
 
