@@ -9,6 +9,7 @@ import {Dropdown} from "./dropdown";
 import {Dictionary, dictionary} from "./dictionary";
 import {Results} from "./results"
 import AutosizeInput from 'react-input-autosize';
+import {Listbox} from "./listbox";
 
 let cn = classNames.bind(style);
 
@@ -60,7 +61,7 @@ interface MultiSelectState<T> {
     searchPage: number;
 
     searchResults: T[] | undefined;
-    searchResultDomIds: number[] | undefined;
+    searchResultDomIds: string[] | undefined;
     searchResultsLoading: boolean;
     searchHasMoreResults: boolean;
     activeSearchResult: number;
@@ -88,12 +89,9 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
 
 
     controlRef: React.RefObject<any>;
-    valuesRef: React.RefObject<HTMLDivElement>;
-    //dropdownRef: React.RefObject<HTMLDivElement>;
-    //loadingMoreResults: React.RefObject<HTMLDivElement>;
+    valuesRef: React.RefObject<Listbox<T>>;
 
     searchFocussedPragmatically: boolean;
-    valuesFocussedPragmatically: boolean;
     toggleWasOpen: boolean;
 
     queryDebounced: (search:string, page:number)=>void;
@@ -107,7 +105,6 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         super(props);
         this.id = "s2-multi-" + uuid();
         this.controlRef = React.createRef();
-        //this.dropdownRef = React.createRef();
         this.valuesRef = React.createRef();
 
         //this.loadingMoreResults = React.createRef();
@@ -172,40 +169,30 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
                         <label className={style.s25Offscreen} id={this.getValuesLabelDomId()}>
                             {valuesLabel}
                         </label>
-                        <div ref={this.valuesRef}
-                             className={style.s25MultiValues}
-                             tabIndex={0}
-                             role="listbox"
-                             aria-orientation="horizontal"
-                             aria-activedescendant={this.getValueDomId(state.activeValue)}
-                             aria-multiselectable="true"
-                             aria-label={valuesLabel}
-                             aria-labelledby={this.getValuesLabelDomId()}
-                             aria-describedby={this.getInstructionsDomId()}
-                             onKeyDown={this.onValuesKeyDown}
-                             onFocus={this.onValuesFocus}
-                             onBlur={this.onValuesBlur}>
-                            {state.values.map((value, index) => {
-                                const selected = state.selectedValues.indexOf(index) >= 0;
-                                const active = state.activeValue == index;
-                                const id = this.getValueDomId(index);
-                                const classes = cn(style.s25Item, {s25Active: active, s25Selected: selected});
-                                return (
-                                    <div key={index}
-                                         id={id}
-                                         className={classes}
-                                         role="option"
-                                         aria-selected={selected}
-                                         aria-checked={selected}
-                                         aria-label={this.getItemLabel(value)}
-                                         onClick={this.onValueClicked(index)}>
-                                        <div className={style.s25Content}>
-                                            {this.getValueContent(value)}
-                                        </div>
-                                    </div>
-                                );
+
+                        <Listbox
+                            items={state.values}
+                            selected={state.selectedValues}
+                            onChange={this.onValuesSelected}
+                            ref={this.valuesRef}
+                            itemLabel={this.getItemLabel}
+                            itemContent={(item) => <div className={style.s25Content}>{this.getValueContent(item)}</div>}
+                            itemClassName={(item, index, selected, active) => cn(style.s25Item, {
+                                s25Active: active,
+                                s25Selected: selected
                             })}
-                        </div>
+                            className={style.s25MultiValues}
+                            ariaLabel={valuesLabel}
+                            ariaLabelledBy={this.getValuesLabelDomId()} /* TODO DO WE NEED THIS SINCE WE ADD OUR OWN LABEL? */
+                            ariaDescribedBy={this.getInstructionsDomId()}
+                            onFocus={this.onValuesFocus}
+                            onBlur={this.onValuesBlur}
+
+
+                        />
+
+
+
                     </React.Fragment>
                     }
 
@@ -299,6 +286,10 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         )
     }
 
+    onValuesSelected = (indexes: number[]) => {
+        this.setState({selectedValues: indexes});
+    }
+
     onControlMouseDown = (event: React.MouseEvent) => {
         // abort mouse down handling, this will prevent focus from flickering because search will not get blurred at this point
         // but do allow it inside the search control so users can change position of cursor, select text, etc
@@ -347,21 +338,12 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         }
     }
 
-    setActiveValue(index: number) {
-        this.setState({activeValue: index});
+    onValuesFocus = (event: React.FocusEvent) => {
+        this.setState({focused: true});
     }
 
-    toggleSelectedValue(index: number) {
-        const oldSelected = this.state.selectedValues;
-        const newSelected = oldSelected.slice();
-        const pos = oldSelected.indexOf(index);
-        if (pos >= 0) {
-            newSelected.splice(pos, 1);
-        } else {
-            newSelected.push(index);
-        }
-        this.setState({selectedValues: newSelected, activeValue: index});
-
+    onValuesBlur = (event: React.FocusEvent) => {
+        this.setState({focused: false});
     }
 
     onRemoveSelectedValuesClicked = (event: React.MouseEvent) => {
@@ -376,97 +358,16 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
             values: values,
             selectedValues: [],
             activeValue: values.length > 0 ? 0 : -1
+        }, function () {
+            if (values.length > 0) {
+                this.valuesRef.current.focus();
+            } else {
+                this.focusSearch();
+            }
         });
-        if (values.length > 0) {
-            this.valuesFocussedPragmatically = true;
-            this.valuesRef.current.focus();
-        } else {
-            this.focusSearch();
-        }
 
         event.stopPropagation(); // do not propagate to body
     };
-
-    onValueClicked = (index: number) => (event: React.MouseEvent) => {
-        this.toggleSelectedValue(index);
-        event.stopPropagation(); // do not propagate to body listener
-        //this.valuesFocussedPragmatically=true;
-        this.valuesRef.current.focus();
-    };
-
-    onValuesFocus = (event: React.FocusEvent) => {
-        this.setState({focused: true});
-
-        if (!this.valuesFocussedPragmatically) {
-            let index = 0;
-            if (this.state.selectedValues.length > 0) {
-                index = this.state.selectedValues[0];
-            }
-            this.setActiveValue(index);
-        }
-        this.valuesFocussedPragmatically = false;
-    };
-
-    onValuesBlur = (event: React.FocusEvent) => {
-        this.setActiveValue(-1);
-        this.setState({focused: false});
-    };
-
-    onValuesKeyDown = (event: React.KeyboardEvent) => {
-        const values = this.state.values;
-        const active = this.state.activeValue;
-
-        //console.log(event.key);
-
-        switch (event.key) {
-            case Key.ArrowLeft:
-            case Key.ArrowUp:{
-                if (active > 0) {
-                    this.setActiveValue(active - 1);
-                }
-                event.preventDefault();
-                break;
-            }
-            case Key.ArrowRight:
-            case Key.ArrowDown:{
-                if (active < values.length - 1) {
-                    this.setActiveValue(active + 1);
-                }
-                event.preventDefault();
-                break;
-            }
-            case Key.PageDown: {
-                // TODO
-                event.preventDefault();
-                break;
-            }
-            case Key.PageUp: {
-                // TODO
-                event.preventDefault();
-                break;
-            }
-            case Key.Home: {
-                this.setActiveValue(0);
-                event.preventDefault();
-                break;
-            }
-            case Key.End: {
-                this.setActiveValue(values.length - 1);
-                event.preventDefault();
-                break;
-            }
-            case Key.Space: {
-                this.toggleSelectedValue(active);
-                event.preventDefault();
-                break;
-            }
-        }
-    };
-
-
-
-
-
 
     setActiveSearchResult = (index: number) => {
         this.setState({activeSearchResult: index});
@@ -640,7 +541,7 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
         try {
             const dict = dictionary(this.props.dictionary);
             const result = await this.props.query(search, page);
-            let searchResultDomIds: number[] = [];
+            let searchResultDomIds: string[] = [];
             result.values.forEach(() => {
                 searchResultDomIds.push(uuid())
             });
@@ -717,36 +618,6 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
 
-
-    onRemove = (index: number) => (event: React.MouseEvent) => {
-        const oldValues = this.state.values;
-        const newValues = this.state.values.slice();
-        const removedValue = newValues.splice(index, 1)[0];
-
-        if (this.props.onValueRemoved) {
-            this.props.onValueRemoved(removedValue, oldValues, newValues);
-        }
-
-        if (this.props.onValuesChanged) {
-            this.props.onValuesChanged(newValues, oldValues);
-        }
-
-        this.setState({values: newValues}, () => {
-            //console.log("set state callback");
-            if (this.state.values.length == 0) {
-                this.focusSearch();
-            } else {
-                const values = this.state.values;
-                let focus = index;
-                if (focus >= values.length) {
-                    focus = values.length - 1;
-                }
-                document.getElementById(this.getValueDomId(focus)).focus();
-            }
-
-        });
-    };
-
     getValuesLabelDomId() {
         return this.id + "-values-label";
     }
@@ -764,9 +635,6 @@ export class MultiSelect<T> extends React.PureComponent<MultiSelectProps<T>, Mul
     }
 
 
-    getValueDomId(index: number) {
-        return (index === undefined || index < 0) ? undefined : this.id + "-value-" + index;
-    }
 
     getSearchResultDomId = (index: number) => {
         return (index === undefined || index < 0) ?

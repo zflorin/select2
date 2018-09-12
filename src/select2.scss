@@ -109,6 +109,7 @@ content: "×";
 			display: block;
 			width: 100%;
 			box-sizing: border-box;
+            cursor: pointer; /* needed to be clickable on ios */
 		}
 	}
 }

@@ -39,7 +39,7 @@ export const Key = {
 export const uuid = (function () {
     let counter = 0;
     return function () {
-        return counter++;
+        return "s25-"+(counter++);
     }
 })();
 
