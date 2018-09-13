@@ -69,6 +69,7 @@ content: "×";
   top: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
   
 	&:disabled {
 		cursor: default;
@@ -175,6 +176,10 @@ content: "×";
 
 .s25-multi .s25-toggle {
   width: 30px;
+  transition: right .2s;
+}
+.s25-remove.s25-offscreen ~ .s25-toggle {
+  right: 0;
 }
 
 .s25-toggle > svg {
@@ -247,7 +252,7 @@ content: "×";
   padding: 0 5px;
   outline: none;
   background-color: #f1f1f1;
-  transition: background .2s;
+  transition: background .2s, width .2s ease-out;
 	
 	span svg {
 		fill: #ccc;
@@ -258,13 +263,16 @@ content: "×";
 		background-color: $remove-bkg-color;
 	
 		&:hover {
-		  	background-color: darken( $remove-bkg-color, 5% );
-		  	
+		  	background-color: darken( $remove-bkg-color, 5% );  	
 	  	}
 	  	
   		span svg {
 			fill: $item-bkg-color;
 		}	
+	}
+	
+	&:not(.s25-offscreen) {
+		width: 30px;
 	}	
 		
 	&:focus {
