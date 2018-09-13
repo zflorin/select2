@@ -53,9 +53,6 @@ export class Listbox<T> extends React.PureComponent<ListboxProps<T>, ListboxStat
         this.id = uuid();
     }
 
-    static getDerivedStateFromProps(props: ListboxProps<any>, state: ListboxState<any>) {
-        console.log("propchange", "active", state.active, "items", props.items);
-    }
 
     focus() {
         this.ref.current.focus();
@@ -156,7 +153,6 @@ export class Listbox<T> extends React.PureComponent<ListboxProps<T>, ListboxStat
                 break;
             }
             case Key.Space: {
-                console.log("active", active);
                 this.toggleSelectedValue(active);
                 event.preventDefault();
                 break;
@@ -200,8 +196,6 @@ export class Listbox<T> extends React.PureComponent<ListboxProps<T>, ListboxStat
         } else {
             newSelected.push(index);
         }
-
-        console.log("old", oldSelected, "new", newSelected, "index", index);
 
         this.props.onChange(newSelected);
     }
