@@ -1,3 +1,8 @@
+DEPRECATION NOTICE
+==================
+Work has been moved from this branch to the select2-react repository. This branch will remain here for a short while to keep a couple of fiddles working that are currently used to evaluate ADA compliance.
+
+
 SELECT 2
 ========
 
